@@ -1,3 +1,74 @@
 [gd_scene format=3 uid="uid://cwcrixpkmn7c1"]
 
+[ext_resource type="Texture2D" uid="uid://i6lgyshreuq3" path="res://assets/characters/baby_placeholder.jpeg" id="1_hyk8p"]
+[ext_resource type="Script" uid="uid://bsu2slaqujuie" path="res://scripts/player/PlayerController.gd" id="1_ow5a4"]
+[ext_resource type="Script" uid="uid://durogn4r31puj" path="res://scripts/ritual/objects/Carpet.gd" id="3_hujxm"]
+[ext_resource type="Texture2D" uid="uid://15bjc3x41iwh" path="res://assets/environment/carpet_placeholder.jpg" id="4_yyfjg"]
+[ext_resource type="Script" uid="uid://biraqgj6blitd" path="res://scripts/ritual/objects/PickableObject.gd" id="5_b1x3f"]
+[ext_resource type="Texture2D" uid="uid://g2j1ebg70tra" path="res://assets/items/candle_placeholder.png" id="6_a8run"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk8p"]
+size = Vector2(43, 51.999992)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuonh"]
+size = Vector2(254, 182)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2fmo"]
+size = Vector2(19.74707, 23)
+
 [node name="Main" type="Node2D" unique_id=1919952599]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=312805971]
+z_index = 100
+position = Vector2(328.54547, 166.27275)
+script = ExtResource("1_ow5a4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=578243241]
+scale = Vector2(0.105, 0.105)
+texture = ExtResource("1_hyk8p")
+
+[node name="HoldPosition" type="Node2D" parent="Player" unique_id=833141380]
+position = Vector2(0, -30.63)
+
+[node name="InteractDetector" type="Area2D" parent="Player" unique_id=578298492]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/InteractDetector" unique_id=448951926]
+visible = false
+position = Vector2(-0.04547119, -0.27275085)
+shape = SubResource("RectangleShape2D_hyk8p")
+
+[node name="Carpet" type="Area2D" parent="." unique_id=1328000553]
+z_index = 50
+position = Vector2(289, 168)
+script = ExtResource("3_hujxm")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Carpet" unique_id=376251306]
+rotation = 1.5707964
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("4_yyfjg")
+
+[node name="PositionA" type="Node2D" parent="Carpet" unique_id=1092559253]
+
+[node name="PositionB" type="Node2D" parent="Carpet" unique_id=1806375519]
+position = Vector2(308.42712, 54.213165)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Carpet" unique_id=1579270052]
+visible = false
+shape = SubResource("RectangleShape2D_iuonh")
+
+[node name="Candle" type="Area2D" parent="." unique_id=1298955212]
+z_index = 25
+position = Vector2(515.2529, 40.3891)
+script = ExtResource("5_b1x3f")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Candle" unique_id=1425361038]
+visible = false
+position = Vector2(-0.12646484, 0.11090088)
+shape = SubResource("RectangleShape2D_k2fmo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Candle" unique_id=1683016409]
+scale = Vector2(0.003, 0.003)
+texture = ExtResource("6_a8run")
