@@ -4,16 +4,21 @@ const SPEED = 100.0
 
 @onready var hold_position: Node2D = $HoldPosition
 @onready var player: AnimationPlayer = $AnimationPlayer
+@onready var interact_detector: Area2D = $InteractDetector
 
 var held_object: PickableObject = null
-var active_carpet: Area2D = null  # Track carpet currently being moved
+var active_interactable: Interactable = null
+
 
 func _ready() -> void:
 	add_to_group("player")
 
-func _physics_process(_delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	process_movement()
+	process_held_interaction(delta)
 	move_and_slide()
+
 
 func process_movement() -> void:
 	var direction := Input.get_vector(
@@ -23,8 +28,10 @@ func process_movement() -> void:
 		"move_up",
 		"move_down"
 	)
+
 	if direction != Vector2.ZERO:
 		velocity = direction * SPEED
+
 		if direction.x > 0:
 			player.play("crawl_right")
 		if direction.x < 0:
@@ -33,32 +40,73 @@ func process_movement() -> void:
 			player.play("crawl_down")
 		if direction.y < 0:
 			player.play("crawl_up")
-		
+
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		# X is the current keybind for interact
+		# If holding an object, X drops it first
 		if held_object:
 			drop_object()
 			return
-			
+
+		# Pickable objects such as candles take priority
 		if try_pick_up():
 			return
-			
-		try_start_carpet()
+
+		# Otherwise interact with an interactable object
+		active_interactable = get_interactable()
+
+		if active_interactable:
+			active_interactable.interact_pressed(self)
 
 	elif event.is_action_released("interact"):
-		if active_carpet:
-			active_carpet.stop_moving()
-			active_carpet = null
+		if active_interactable and is_instance_valid(active_interactable):
+			active_interactable.interact_released(self)
+
+		active_interactable = null
+
+
+func process_held_interaction(delta: float) -> void:
+	if not active_interactable:
+		return
+
+	if not is_instance_valid(active_interactable):
+		active_interactable = null
+		return
+
+	# Stop the interaction if the player moves out of range
+	if not interact_detector.get_overlapping_areas().has(active_interactable):
+		active_interactable.interact_released(self)
+		active_interactable = null
+		return
+
+	if Input.is_action_pressed("interact"):
+		active_interactable.interact_held(self, delta)
+
+
+func get_interactable() -> Interactable:
+	var closest_interactable: Interactable = null
+	var closest_distance := INF
+
+	for area in interact_detector.get_overlapping_areas():
+		if area is Interactable:
+			var distance := global_position.distance_squared_to(
+				area.global_position
+			)
+
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_interactable = area
+
+	return closest_interactable
+
 
 func try_pick_up() -> bool:
-	if not has_node("InteractDetector"):
-		return false
+	var areas = interact_detector.get_overlapping_areas()
 
-	var areas = $InteractDetector.get_overlapping_areas()
 	for area in areas:
 		if area is PickableObject and not area.is_held:
 			held_object = area
@@ -67,19 +115,9 @@ func try_pick_up() -> bool:
 
 	return false
 
+
 func drop_object() -> void:
 	if held_object:
 		var current_scene = get_tree().current_scene
 		held_object.drop(current_scene, global_position)
 		held_object = null
-
-func try_start_carpet() -> void:
-	if not has_node("InteractDetector"):
-		return
-		
-	var areas = $InteractDetector.get_overlapping_areas()
-	for area in areas:
-		if area.has_method("start_moving"):
-			active_carpet = area
-			active_carpet.start_moving()
-			break
