@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 100.0
 
 @onready var hold_position: Node2D = $HoldPosition
+@onready var player: AnimationPlayer = $AnimationPlayer
 
 var held_object: PickableObject = null
 var active_carpet: Area2D = null  # Track carpet currently being moved
@@ -24,6 +25,15 @@ func process_movement() -> void:
 	)
 	if direction != Vector2.ZERO:
 		velocity = direction * SPEED
+		if direction.x > 0:
+			player.play("crawl_right")
+		if direction.x < 0:
+			player.play("crawl_left")
+		if direction.y > 0:
+			player.play("crawl_down")
+		if direction.y < 0:
+			player.play("crawl_up")
+		
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
 
