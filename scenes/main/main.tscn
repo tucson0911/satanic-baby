@@ -1,14 +1,348 @@
 [gd_scene format=3 uid="uid://cwcrixpkmn7c1"]
 
-[ext_resource type="Texture2D" uid="uid://i6lgyshreuq3" path="res://assets/characters/baby_placeholder.jpeg" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://bsu2slaqujuie" path="res://scripts/player/PlayerController.gd" id="1_ow5a4"]
+[ext_resource type="Texture2D" uid="uid://bstpxe3rms5tl" path="res://assets/characters/baby.png" id="2_ow5a4"]
 [ext_resource type="Script" uid="uid://durogn4r31puj" path="res://scripts/ritual/objects/Carpet.gd" id="3_hujxm"]
 [ext_resource type="Texture2D" uid="uid://15bjc3x41iwh" path="res://assets/environment/carpet_placeholder.jpg" id="4_yyfjg"]
 [ext_resource type="Script" uid="uid://biraqgj6blitd" path="res://scripts/ritual/objects/PickableObject.gd" id="5_b1x3f"]
-[ext_resource type="Texture2D" uid="uid://g2j1ebg70tra" path="res://assets/items/candle_placeholder.png" id="6_a8run"]
+[ext_resource type="Texture2D" uid="uid://b2l3buoa8scw6" path="res://assets/objects/carpet1.png" id="5_yyfjg"]
+[ext_resource type="Texture2D" uid="uid://cgayh2gll1ahf" path="res://assets/objects/candle1.png" id="6_hujxm"]
+[ext_resource type="Texture2D" uid="uid://dyitqoyk2jsl0" path="res://assets/objects/candle2.png" id="7_yyfjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk8p"]
 size = Vector2(43, 51.999992)
+
+[sub_resource type="Animation" id="Animation_hujxm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yyfjg"]
+resource_name = "crawl_down"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_b1x3f"]
+resource_name = "crawl_down_blood"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [24, 25]
+}
+
+[sub_resource type="Animation" id="Animation_a8run"]
+resource_name = "crawl_down_crayon"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_ouso4"]
+resource_name = "crawl_down_teddy"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_blune"]
+resource_name = "crawl_left"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ow5a4"]
+resource_name = "crawl_left_blood"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_th5th"]
+resource_name = "crawl_left_crayon"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_7smn1"]
+resource_name = "crawl_left_teddy"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_raeie"]
+resource_name = "crawl_right"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_m4h2d"]
+resource_name = "crawl_right_blood"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_hxu8e"]
+resource_name = "crawl_right_crayon"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_nvumn"]
+resource_name = "crawl_right_teddy"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_ou6is"]
+resource_name = "crawl_up"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_pg34l"]
+resource_name = "crawl_up_blood"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [30, 31]
+}
+
+[sub_resource type="Animation" id="Animation_necax"]
+resource_name = "crawl_up_crayon"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_r4lks"]
+resource_name = "crawl_up_teddy"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [22, 23]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pg34l"]
+_data = {
+&"RESET": SubResource("Animation_hujxm"),
+&"crawl_down": SubResource("Animation_yyfjg"),
+&"crawl_down_blood": SubResource("Animation_b1x3f"),
+&"crawl_down_crayon": SubResource("Animation_a8run"),
+&"crawl_down_teddy": SubResource("Animation_ouso4"),
+&"crawl_left": SubResource("Animation_blune"),
+&"crawl_left_blood": SubResource("Animation_ow5a4"),
+&"crawl_left_crayon": SubResource("Animation_th5th"),
+&"crawl_left_teddy": SubResource("Animation_7smn1"),
+&"crawl_right": SubResource("Animation_raeie"),
+&"crawl_right_blood": SubResource("Animation_m4h2d"),
+&"crawl_right_crayon": SubResource("Animation_hxu8e"),
+&"crawl_right_teddy": SubResource("Animation_nvumn"),
+&"crawl_up": SubResource("Animation_ou6is"),
+&"crawl_up_blood": SubResource("Animation_pg34l"),
+&"crawl_up_crayon": SubResource("Animation_necax"),
+&"crawl_up_teddy": SubResource("Animation_r4lks")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iuonh"]
 size = Vector2(254, 182)
@@ -24,10 +358,6 @@ position = Vector2(328.54547, 166.27275)
 script = ExtResource("1_ow5a4")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=578243241]
-scale = Vector2(0.105, 0.105)
-texture = ExtResource("1_hyk8p")
-
 [node name="HoldPosition" type="Node2D" parent="Player" unique_id=833141380]
 position = Vector2(0, -30.63)
 
@@ -38,6 +368,15 @@ visible = false
 position = Vector2(-0.04547119, -0.27275085)
 shape = SubResource("RectangleShape2D_hyk8p")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Player" unique_id=193129412]
+texture_filter = 1
+texture = ExtResource("2_ow5a4")
+hframes = 8
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=2134384118]
+libraries/ = SubResource("AnimationLibrary_pg34l")
+
 [node name="Carpet" type="Area2D" parent="." unique_id=1328000553]
 z_index = 50
 position = Vector2(289, 168)
@@ -45,6 +384,7 @@ script = ExtResource("3_hujxm")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Carpet" unique_id=376251306]
+visible = false
 rotation = 1.5707964
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("4_yyfjg")
@@ -58,6 +398,9 @@ position = Vector2(308.42712, 54.213165)
 visible = false
 shape = SubResource("RectangleShape2D_iuonh")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Carpet" unique_id=1663101793]
+texture = ExtResource("5_yyfjg")
+
 [node name="Candle" type="Area2D" parent="." unique_id=1298955212]
 z_index = 25
 position = Vector2(515.2529, 40.3891)
@@ -69,6 +412,11 @@ visible = false
 position = Vector2(-0.12646484, 0.11090088)
 shape = SubResource("RectangleShape2D_k2fmo")
 
-[node name="Sprite2D" type="Sprite2D" parent="Candle" unique_id=1683016409]
-scale = Vector2(0.003, 0.003)
-texture = ExtResource("6_a8run")
+[node name="CandleOff" type="Sprite2D" parent="Candle" unique_id=1683016409]
+texture_filter = 1
+texture = ExtResource("6_hujxm")
+
+[node name="CandleOn" type="Sprite2D" parent="Candle" unique_id=160031732]
+visible = false
+texture_filter = 1
+texture = ExtResource("7_yyfjg")

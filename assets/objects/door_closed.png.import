@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i6lgyshreuq3"
-path="res://.godot/imported/baby_placeholder.jpeg-c495ceea26ffdd82c4110257c56698de.ctex"
+uid="uid://bxpseei82vka8"
+path="res://.godot/imported/door_closed.png-d620b0d7316d39446f14bfcb4367afc7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/baby_placeholder.jpeg"
-dest_files=["res://.godot/imported/baby_placeholder.jpeg-c495ceea26ffdd82c4110257c56698de.ctex"]
+source_file="res://assets/objects/door_closed.png"
+dest_files=["res://.godot/imported/door_closed.png-d620b0d7316d39446f14bfcb4367afc7.ctex"]
 
 [params]
 
