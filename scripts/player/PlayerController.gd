@@ -15,14 +15,21 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func process_movement() -> void:
-	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction := Input.get_vector(
+		# both WASD/ARROW KEYS works, can change it in project settings
+		"move_left",
+		"move_right",
+		"move_up",
+		"move_down"
+	)
 	if direction != Vector2.ZERO:
 		velocity = direction * SPEED
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("interact"):
+		# X is the current keybind for interact
 		if held_object:
 			drop_object()
 			return
@@ -32,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 		try_start_carpet()
 
-	elif event.is_action_released("ui_accept"):
+	elif event.is_action_released("interact"):
 		if active_carpet:
 			active_carpet.stop_moving()
 			active_carpet = null
