@@ -1,32 +1,38 @@
 extends Interactable
 
-@export var move_per_press: float = 15.0
-
-@onready var pos_a_node: Node2D = $PositionA
-@onready var pos_b_node: Node2D = $PositionB
-
-var global_pos_a: Vector2
-var global_pos_b: Vector2
-
-var target_is_b: bool = true
-
+@export var move_per_press: float = 12.0
+@export var stop_distance: float = 35.0
+@export var pentagram_center: Node2D
+@export var cover_distance: float = 30.0
+var is_covering_pentagram: bool = false
 
 func _ready() -> void:
-	global_pos_a = pos_a_node.global_position
-	global_pos_b = pos_b_node.global_position
-
-	global_position = global_pos_a
+	interaction_priority = 10
 
 
-func interact_pressed(_player: CharacterBody2D) -> void:
-	var target := global_pos_b if target_is_b else global_pos_a
 
-	global_position = global_position.move_toward(
-		target,
-		move_per_press
+func interact_pressed(player: CharacterBody2D) -> void:
+	var target := player.global_position
+
+	var distance_to_player := global_position.distance_to(target)
+
+	if distance_to_player > stop_distance:
+		global_position = global_position.move_toward(
+			target,
+			move_per_press
+		)
+
+	update_cover_state()
+	
+func update_cover_state() -> void:
+	if not pentagram_center:
+		return
+
+	is_covering_pentagram = (
+		global_position.distance_to(
+			pentagram_center.global_position
+		) <= cover_distance
 	)
 
-	# Carpet has reached its destination
-	if global_position.distance_to(target) < 0.1:
-		global_position = target
-		target_is_b = !target_is_b
+	if is_covering_pentagram:
+		print("Pentagram covered")	

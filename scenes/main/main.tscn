@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dk8m1ld5orcd6" path="res://scenes/main/room.tscn" id="1_a8run"]
 [ext_resource type="Script" uid="uid://bsu2slaqujuie" path="res://scripts/player/PlayerController.gd" id="1_ow5a4"]
 [ext_resource type="Texture2D" uid="uid://bstpxe3rms5tl" path="res://assets/characters/baby.png" id="2_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://djp0ybys1i1fm" path="res://scenes/main/Door.tscn" id="2_p8abn"]
 [ext_resource type="Script" uid="uid://durogn4r31puj" path="res://scripts/ritual/objects/Carpet.gd" id="3_hujxm"]
 [ext_resource type="Texture2D" uid="uid://15bjc3x41iwh" path="res://assets/environment/carpet_placeholder.jpg" id="4_yyfjg"]
 [ext_resource type="Script" uid="uid://biraqgj6blitd" path="res://scripts/ritual/objects/PickableObject.gd" id="5_b1x3f"]
@@ -10,6 +11,18 @@
 [ext_resource type="Texture2D" uid="uid://cgayh2gll1ahf" path="res://assets/objects/candle1.png" id="6_hujxm"]
 [ext_resource type="Texture2D" uid="uid://dyitqoyk2jsl0" path="res://assets/objects/candle2.png" id="7_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://bcw5v3cd0jtvc" path="res://scenes/items/TeddyBear.tscn" id="9_b1x3f"]
+[ext_resource type="Script" uid="uid://3cuy3dka57y5" path="res://scripts/systems/GameManager.gd" id="11_ouso4"]
+[ext_resource type="Texture2D" uid="uid://ti7xwyd8hyvi" path="res://assets/objects/plushblue1.png" id="11_raeie"]
+[ext_resource type="PackedScene" uid="uid://71mckq1lde74" path="res://scenes/ritual/Pentagram.tscn" id="11_th5th"]
+[ext_resource type="Script" uid="uid://c15jxcgga08e0" path="res://scripts/ritual/objects/Pentagram.gd" id="12_7smn1"]
+[ext_resource type="Texture2D" uid="uid://bw2xcplutlm75" path="res://assets/objects/plushblue2.png" id="12_hxu8e"]
+[ext_resource type="Texture2D" uid="uid://dc256dnp5nqit" path="res://assets/objects/plushgreen1.png" id="13_pg34l"]
+[ext_resource type="Texture2D" uid="uid://bpay2j3nylpax" path="res://assets/objects/plushgreen2.png" id="14_m4h2d"]
+[ext_resource type="Texture2D" uid="uid://b26uad8ynkwxw" path="res://assets/objects/plushpink1.png" id="15_p8abn"]
+[ext_resource type="Texture2D" uid="uid://hety2nlcvo6l" path="res://assets/objects/plushpink2.png" id="16_s17dp"]
+[ext_resource type="Texture2D" uid="uid://bp30vqnlmbvfk" path="res://assets/objects/plushyellow1.png" id="17_37hlw"]
+[ext_resource type="Texture2D" uid="uid://bmcd08anyy3g8" path="res://assets/objects/plushyellow2.png" id="18_6llfj"]
+[ext_resource type="Script" uid="uid://c8n81630hoeuv" path="res://scripts/systems/ParentSystem.gd" id="22_m4h2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk8p"]
 size = Vector2(43, 51.999992)
@@ -350,7 +363,7 @@ _data = {
 size = Vector2(19.545471, 12.000008)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iuonh"]
-size = Vector2(254, 182)
+size = Vector2(189, 189)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2fmo"]
 size = Vector2(19.74707, 23)
@@ -358,6 +371,9 @@ size = Vector2(19.74707, 23)
 [node name="Main" type="Node2D" unique_id=1919952599]
 
 [node name="Room" parent="." unique_id=1695487121 instance=ExtResource("1_a8run")]
+
+[node name="Door" parent="." unique_id=322781919 instance=ExtResource("2_p8abn")]
+position = Vector2(522, 69)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=312805971]
 z_index = 100
@@ -388,10 +404,11 @@ libraries/ = SubResource("AnimationLibrary_pg34l")
 position = Vector2(0.2272644, 9.727249)
 shape = SubResource("RectangleShape2D_rl7k7")
 
-[node name="Carpet" type="Area2D" parent="." unique_id=1328000553]
+[node name="Carpet" type="Area2D" parent="." unique_id=1328000553 node_paths=PackedStringArray("pentagram_center")]
 z_index = 50
-position = Vector2(289, 168)
+position = Vector2(264, 203)
 script = ExtResource("3_hujxm")
+pentagram_center = NodePath("../Pentagram/CoverPoint")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Carpet" unique_id=376251306]
@@ -414,7 +431,7 @@ texture = ExtResource("5_yyfjg")
 
 [node name="Candle" type="Area2D" parent="." unique_id=1298955212]
 z_index = 25
-position = Vector2(515.2529, 40.3891)
+position = Vector2(130, 237)
 script = ExtResource("5_b1x3f")
 metadata/_edit_group_ = true
 
@@ -432,5 +449,48 @@ visible = false
 texture_filter = 1
 texture = ExtResource("7_yyfjg")
 
-[node name="TeddyBear" parent="." unique_id=533541291 instance=ExtResource("9_b1x3f")]
-position = Vector2(459, 177)
+[node name="TeddyBear" parent="." unique_id=533541291 node_paths=PackedStringArray("game_manager") instance=ExtResource("9_b1x3f")]
+position = Vector2(453, 179)
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="TeddyBear2" parent="." unique_id=1141598109 node_paths=PackedStringArray("game_manager") instance=ExtResource("9_b1x3f")]
+position = Vector2(361, 303)
+normal_texture = ExtResource("11_raeie")
+broken_texture = ExtResource("12_hxu8e")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="TeddyBear3" parent="." unique_id=1659773783 node_paths=PackedStringArray("game_manager") instance=ExtResource("9_b1x3f")]
+position = Vector2(558, 248)
+normal_texture = ExtResource("13_pg34l")
+broken_texture = ExtResource("14_m4h2d")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="TeddyBear4" parent="." unique_id=352404722 node_paths=PackedStringArray("game_manager") instance=ExtResource("9_b1x3f")]
+position = Vector2(527, 170)
+normal_texture = ExtResource("15_p8abn")
+broken_texture = ExtResource("16_s17dp")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="TeddyBear5" parent="." unique_id=1290428097 node_paths=PackedStringArray("game_manager") instance=ExtResource("9_b1x3f")]
+position = Vector2(531, 331)
+normal_texture = ExtResource("17_37hlw")
+broken_texture = ExtResource("18_6llfj")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="Pentagram" parent="." unique_id=1349419566 node_paths=PackedStringArray("game_manager") instance=ExtResource("11_th5th")]
+position = Vector2(466, 269)
+script = ExtResource("12_7smn1")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="Systems" type="Node" parent="." unique_id=499423747]
+
+[node name="GameManager" type="Node" parent="Systems" unique_id=140387077]
+script = ExtResource("11_ouso4")
+
+[node name="ParentSystem" type="Node" parent="Systems" unique_id=651861332 node_paths=PackedStringArray("game_manager", "carpet", "door")]
+script = ExtResource("22_m4h2d")
+game_manager = NodePath("../GameManager")
+carpet = NodePath("../../Carpet")
+door = NodePath("../../Door")
+
+[editable path="Pentagram"]
