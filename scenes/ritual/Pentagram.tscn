@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://71mckq1lde74"]
+
+[ext_resource type="Texture2D" uid="uid://dk01ix6ylvxuk" path="res://assets/environment/pentagramstar.png" id="1_nuu3h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_raeie"]
+radius = 49.11
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kprmy"]
+atlas = ExtResource("1_nuu3h")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sgp8"]
+atlas = ExtResource("1_nuu3h")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piu1j"]
+atlas = ExtResource("1_nuu3h")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyl76"]
+atlas = ExtResource("1_nuu3h")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3tjs"]
+atlas = ExtResource("1_nuu3h")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r50vm"]
+atlas = ExtResource("1_nuu3h")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nlaol"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kprmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sgp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piu1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyl76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3tjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r50vm")
+}],
+"loop": 0,
+"name": &"progress",
+"speed": 5.0
+}]
+
+[node name="Pentagram" type="Area2D" unique_id=1349419566]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=762311638]
+shape = SubResource("CircleShape2D_raeie")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=914190473]
+sprite_frames = SubResource("SpriteFrames_nlaol")
+animation = &"progress"
+
+[node name="CoverPoint" type="Marker2D" parent="." unique_id=556224891]

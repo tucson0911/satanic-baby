@@ -88,20 +88,28 @@ func process_held_interaction(delta: float) -> void:
 
 
 func get_interactable() -> Interactable:
-	var closest_interactable: Interactable = null
-	var closest_distance := INF
+	var best_interactable: Interactable = null
+	var best_priority: int = -999999
+	var closest_distance: float = INF
 
 	for area in interact_detector.get_overlapping_areas():
 		if area is Interactable:
+			var interactable := area as Interactable
 			var distance := global_position.distance_squared_to(
-				area.global_position
+				interactable.global_position
 			)
 
-			if distance < closest_distance:
+			if interactable.interaction_priority > best_priority:
+				best_priority = interactable.interaction_priority
 				closest_distance = distance
-				closest_interactable = area
+				best_interactable = interactable
 
-	return closest_interactable
+			elif interactable.interaction_priority == best_priority:
+				if distance < closest_distance:
+					closest_distance = distance
+					best_interactable = interactable
+
+	return best_interactable
 
 
 func try_pick_up() -> bool:

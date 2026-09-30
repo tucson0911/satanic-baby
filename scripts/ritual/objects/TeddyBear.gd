@@ -4,11 +4,16 @@ extends Interactable
 @export var normal_texture: Texture2D
 @export var broken_texture: Texture2D
 
+@export var game_manager: GameManager
+
 @onready var sprite: Sprite2D = $Sprite2D
 
 var current_presses: int = 0
 var is_broken: bool = false
 
+func _ready() -> void:
+	if normal_texture:
+		sprite.texture = normal_texture
 
 func interact_pressed(_player: CharacterBody2D) -> void:
 	if is_broken:
@@ -24,5 +29,8 @@ func interact_pressed(_player: CharacterBody2D) -> void:
 
 func break_teddy() -> void:
 	is_broken = true
-	sprite.texture = broken_texture
+	if broken_texture:
+		sprite.texture = broken_texture
 	print("Doll broken!")
+	if game_manager:
+		game_manager.add_drawing_material()
