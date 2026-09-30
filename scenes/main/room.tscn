@@ -21,6 +21,17 @@ texture = ExtResource("2_rtn2a")
 [sub_resource type="TileSet" id="TileSet_psmir"]
 sources/0 = SubResource("TileSetAtlasSource_fmhr6")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rl7k7"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_frjcx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_psmir"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p8qsf"]
+normal = Vector2(-1, 0)
+
 [node name="Room" type="Node2D" unique_id=1695487121]
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=65532878]
@@ -38,3 +49,19 @@ tile_set = ExtResource("1_w5lnr")
 [node name="door" type="TileMapLayer" parent="." unique_id=317454663]
 tile_map_data = PackedByteArray("AAAfAAIAAAAAAAAAAAAfAAMAAAAAAAEAAAAfAAQAAAAAAAIAAAAfAAUAAAAAAAMAAAAgAAIAAAABAAAAAAAgAAMAAAABAAEAAAAgAAQAAAABAAIAAAAgAAUAAAABAAMAAAAhAAIAAAACAAAAAAAhAAMAAAACAAEAAAAhAAQAAAACAAIAAAAhAAUAAAACAAMAAAA=")
 tile_set = SubResource("TileSet_psmir")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=659128543]
+
+[node name="Top" type="CollisionShape2D" parent="StaticBody2D" unique_id=1142716093]
+shape = SubResource("WorldBoundaryShape2D_rl7k7")
+
+[node name="bottom" type="CollisionShape2D" parent="StaticBody2D" unique_id=80019798]
+position = Vector2(0, 360)
+shape = SubResource("WorldBoundaryShape2D_frjcx")
+
+[node name="Left" type="CollisionShape2D" parent="StaticBody2D" unique_id=1219307778]
+shape = SubResource("WorldBoundaryShape2D_psmir")
+
+[node name="Right" type="CollisionShape2D" parent="StaticBody2D" unique_id=1079506762]
+position = Vector2(640, 0)
+shape = SubResource("WorldBoundaryShape2D_p8qsf")
