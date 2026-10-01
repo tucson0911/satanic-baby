@@ -215,7 +215,6 @@ func change_phase(new_phase: Phase) -> void:
 	mm.play_phase_music(current_phase)
 	sm.switch_phase_shader(current_phase)
 	
-	# Waving
 	if new_phase == Phase.CRAYONS:
 		sm.stop_waving_effect()
 	if new_phase == Phase.LIGHTING:
