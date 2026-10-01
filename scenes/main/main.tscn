@@ -24,7 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://hety2nlcvo6l" path="res://assets/objects/plushpink2.png" id="16_s17dp"]
 [ext_resource type="Texture2D" uid="uid://bp30vqnlmbvfk" path="res://assets/objects/plushyellow1.png" id="17_37hlw"]
 [ext_resource type="Texture2D" uid="uid://bmcd08anyy3g8" path="res://assets/objects/plushyellow2.png" id="18_6llfj"]
+[ext_resource type="PackedScene" uid="uid://dahprbf00bfjd" path="res://scenes/items/WaxDoll.tscn" id="22_62atk"]
 [ext_resource type="Script" uid="uid://c8n81630hoeuv" path="res://scripts/systems/ParentSystem.gd" id="22_m4h2d"]
+[ext_resource type="PackedScene" uid="uid://hpx8bnxs8rg" path="res://scenes/ritual/CandleSlot.tscn" id="24_0bhws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk8p"]
 size = Vector2(43, 51.999992)
@@ -488,9 +490,9 @@ texture = ExtResource("9_6llfj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crayon5" unique_id=676467996]
 shape = SubResource("RectangleShape2D_gg8fr")
 
-[node name="Candle" type="Area2D" parent="." unique_id=1298955212]
+[node name="Candle" type="Area2D" parent="." unique_id=1298955212 groups=["candle"]]
 z_index = 25
-position = Vector2(130, 237)
+position = Vector2(-27, 158)
 script = ExtResource("5_b1x3f")
 metadata/_edit_group_ = true
 
@@ -536,10 +538,43 @@ normal_texture = ExtResource("17_37hlw")
 broken_texture = ExtResource("18_6llfj")
 game_manager = NodePath("../Systems/GameManager")
 
+[node name="WaxDoll" parent="." unique_id=358602000 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(121, 122)
+
+[node name="WaxDoll2" parent="." unique_id=1207425749 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(99, 174)
+
+[node name="WaxDoll3" parent="." unique_id=400173971 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(61, 218)
+
+[node name="WaxDoll4" parent="." unique_id=1525722816 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(64, 285)
+
+[node name="WaxDoll5" parent="." unique_id=1522475384 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(91, 339)
+
 [node name="Pentagram" parent="." unique_id=1349419566 node_paths=PackedStringArray("game_manager") instance=ExtResource("11_th5th")]
 position = Vector2(466, 269)
 script = ExtResource("12_7smn1")
 game_manager = NodePath("../Systems/GameManager")
+
+[node name="CandleSlot" parent="Pentagram" unique_id=1076069025 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
+position = Vector2(-1, -47)
+game_manager = NodePath("../../Systems/GameManager")
+
+[node name="CandleSlot2" parent="Pentagram" unique_id=534442115 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
+position = Vector2(29, 34)
+game_manager = NodePath("../../Systems/GameManager")
+
+[node name="CandleSlot3" parent="Pentagram" unique_id=1565931942 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
+position = Vector2(-41, -21)
+game_manager = NodePath("../../Systems/GameManager")
+
+[node name="CandleSlot4" parent="Pentagram" unique_id=2086506864 instance=ExtResource("24_0bhws")]
+position = Vector2(43, -21)
+
+[node name="CandleSlot5" parent="Pentagram" unique_id=784782870 instance=ExtResource("24_0bhws")]
+position = Vector2(-31, 34)
 
 [node name="Systems" type="Node" parent="." unique_id=499423747]
 
