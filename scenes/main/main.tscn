@@ -7,13 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://swk5ypvm6132" path="res://scenes/main/Closet.tscn" id="3_62atk"]
 [ext_resource type="Script" uid="uid://durogn4r31puj" path="res://scripts/ritual/objects/Carpet.gd" id="3_hujxm"]
 [ext_resource type="Texture2D" uid="uid://15bjc3x41iwh" path="res://assets/environment/carpet_placeholder.jpg" id="4_yyfjg"]
-[ext_resource type="Script" uid="uid://biraqgj6blitd" path="res://scripts/ritual/objects/PickableObject.gd" id="5_b1x3f"]
 [ext_resource type="Texture2D" uid="uid://b2l3buoa8scw6" path="res://assets/objects/carpet1.png" id="5_yyfjg"]
 [ext_resource type="Texture2D" uid="uid://cgayh2gll1ahf" path="res://assets/objects/candle1.png" id="6_hujxm"]
 [ext_resource type="Texture2D" uid="uid://dyitqoyk2jsl0" path="res://assets/objects/candle2.png" id="7_yyfjg"]
 [ext_resource type="Script" uid="uid://bkb8wp2dtf26n" path="res://scripts/ritual/objects/Crayon.gd" id="8_37hlw"]
 [ext_resource type="Texture2D" uid="uid://vwdhae5802jh" path="res://assets/objects/crayons.png" id="9_6llfj"]
 [ext_resource type="PackedScene" uid="uid://bcw5v3cd0jtvc" path="res://scenes/items/TeddyBear.tscn" id="9_b1x3f"]
+[ext_resource type="Script" uid="uid://p033l2j8bwgi" path="res://scripts/ritual/objects/Candle.gd" id="11_62atk"]
 [ext_resource type="Script" uid="uid://3cuy3dka57y5" path="res://scripts/systems/GameManager.gd" id="11_ouso4"]
 [ext_resource type="Texture2D" uid="uid://ti7xwyd8hyvi" path="res://assets/objects/plushblue1.png" id="11_raeie"]
 [ext_resource type="PackedScene" uid="uid://71mckq1lde74" path="res://scenes/ritual/Pentagram.tscn" id="11_th5th"]
@@ -501,7 +501,7 @@ shape = SubResource("RectangleShape2D_gg8fr")
 [node name="Candle" type="Area2D" parent="." unique_id=1298955212 groups=["candle"]]
 z_index = 25
 position = Vector2(-27, 158)
-script = ExtResource("5_b1x3f")
+script = ExtResource("11_62atk")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Candle" unique_id=1425361038]
@@ -598,4 +598,5 @@ carpet = NodePath("../../Carpet")
 door = NodePath("../../Door")
 
 [editable path="Closet"]
+[editable path="WaxDoll"]
 [editable path="Pentagram"]
