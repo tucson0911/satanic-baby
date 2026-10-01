@@ -161,3 +161,15 @@ func drop_object() -> void:
 		var current_scene = get_tree().current_scene
 		held_object.drop(current_scene, global_position)
 		held_object = null
+
+
+func can_receive_item() -> bool:
+	return held_object == null
+
+
+func receive_item(item: PickableObject) -> void:
+	if held_object:
+		return
+
+	held_object = item
+	held_object.pick_up(hold_position)	

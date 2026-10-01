@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://swk5ypvm6132"]
+
+[ext_resource type="Texture2D" uid="uid://b7pvugscfxsd2" path="res://assets/objects/closet_closed.png" id="1_ijka3"]
+[ext_resource type="Script" uid="uid://brvbe7tll1m06" path="res://scripts/systems/Closet.gd" id="1_tbmrg"]
+[ext_resource type="Texture2D" uid="uid://c0dxtotd1qx3i" path="res://assets/objects/closet_open.png" id="2_tbmrg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg8fr"]
+
+[node name="Closet" type="Area2D" unique_id=590218439]
+script = ExtResource("1_tbmrg")
+
+[node name="ClosetClosed" type="Sprite2D" parent="." unique_id=1071629788]
+texture = ExtResource("1_ijka3")
+
+[node name="ClosetOpen" type="Sprite2D" parent="." unique_id=1704878833]
+texture = ExtResource("2_tbmrg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741557964]
+shape = SubResource("RectangleShape2D_gg8fr")
+
+[node name="Storage" type="Node2D" parent="." unique_id=1360459707]
+
+[node name="CloseTimer" type="Timer" parent="." unique_id=1207153397]
+wait_time = 0.5
+one_shot = true
