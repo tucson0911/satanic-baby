@@ -570,11 +570,13 @@ game_manager = NodePath("../../Systems/GameManager")
 position = Vector2(-41, -21)
 game_manager = NodePath("../../Systems/GameManager")
 
-[node name="CandleSlot4" parent="Pentagram" unique_id=2086506864 instance=ExtResource("24_0bhws")]
+[node name="CandleSlot4" parent="Pentagram" unique_id=2086506864 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
 position = Vector2(43, -21)
+game_manager = NodePath("../../Systems/GameManager")
 
-[node name="CandleSlot5" parent="Pentagram" unique_id=784782870 instance=ExtResource("24_0bhws")]
+[node name="CandleSlot5" parent="Pentagram" unique_id=784782870 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
 position = Vector2(-31, 34)
+game_manager = NodePath("../../Systems/GameManager")
 
 [node name="Systems" type="Node" parent="." unique_id=499423747]
 
