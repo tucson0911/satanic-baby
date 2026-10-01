@@ -3,6 +3,7 @@ extends Node
 
 
 enum Phase {
+	CRAYONS,
 	PENTAGRAM,
 	CANDLES,
 	LIGHTING,
@@ -14,17 +15,75 @@ signal phase_changed(new_phase: Phase)
 signal suspicion_changed(new_level: int)
 signal pentagram_progress_changed(current: int, total: int)
 signal first_pentagram_segment_drawn
-
+signal circle_completed
+signal crayon_collected(current: int, total: int)
 
 @export var total_pentagram_segments: int = 5
+@export var total_crayons: int = 5
 
-var current_phase: Phase = Phase.PENTAGRAM
+var current_phase: Phase = Phase.CRAYONS
 var suspicion: int = 0
+# Phase 1
+var crayons_collected: int = 0
+var is_circle_completed: bool = false
+var first_parent_visit_completed: bool = false
+const TOTAL_CRAYONS := 5
+
+# Phase 2
+var drawing_materials: int = 0
 var pentagram_segments: int = 0
+
+# Later phases
 var candles_placed: int = 0
 var candles_lit: int = 0
-var drawing_materials: int = 0
 
+
+
+func add_crayon() -> void:
+	if current_phase != Phase.CRAYONS:
+		return
+
+	if crayons_collected >= total_crayons:
+		return
+
+	crayons_collected += 1
+
+	crayon_collected.emit(
+		crayons_collected,
+		total_crayons
+	)
+
+	print(
+		"Crayons: ",
+		crayons_collected,
+		"/",
+		total_crayons
+	)
+	
+func has_all_crayons() -> bool:
+	return crayons_collected >= TOTAL_CRAYONS
+	
+func complete_circle() -> void:
+	if current_phase != Phase.CRAYONS:
+		return
+
+	if not has_all_crayons():
+		return
+
+	if is_circle_completed:
+		return
+
+	is_circle_completed = true
+
+	print("Outer circle completed!")
+
+	circle_completed.emit()	
+	
+func complete_first_parent_visit() -> void:
+	first_parent_visit_completed = true
+
+	if is_circle_completed:
+		change_phase(Phase.PENTAGRAM)	
 
 func add_pentagram_segment() -> void:
 	if current_phase != Phase.PENTAGRAM:

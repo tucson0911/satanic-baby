@@ -14,20 +14,17 @@ var first_visit_started := false
 
 func _ready() -> void:
 	if game_manager:
-		game_manager.first_pentagram_segment_drawn.connect(
-			_on_first_pentagram_segment_drawn
+		game_manager.circle_completed.connect(
+			_on_circle_completed
 		)
 
 
-func _on_first_pentagram_segment_drawn() -> void:
-	if first_visit_started:
-		return
-
-	first_visit_started = true
-
+func _on_circle_completed() -> void:
 	print("Parent will check in 10 seconds!")
 
-	await get_tree().create_timer(first_visit_delay).timeout
+	await get_tree().create_timer(
+		first_visit_delay
+	).timeout
 
 	parent_visit()
 
@@ -46,7 +43,7 @@ func parent_visit() -> void:
 		door.close_door()
 
 	print("PARENT LEAVES ROOM")
-
+	game_manager.complete_first_parent_visit()
 
 func inspect_room() -> void:
 	if carpet and carpet.is_covering_pentagram:

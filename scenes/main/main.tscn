@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://b2l3buoa8scw6" path="res://assets/objects/carpet1.png" id="5_yyfjg"]
 [ext_resource type="Texture2D" uid="uid://cgayh2gll1ahf" path="res://assets/objects/candle1.png" id="6_hujxm"]
 [ext_resource type="Texture2D" uid="uid://dyitqoyk2jsl0" path="res://assets/objects/candle2.png" id="7_yyfjg"]
+[ext_resource type="Script" uid="uid://bkb8wp2dtf26n" path="res://scripts/ritual/objects/Crayon.gd" id="8_37hlw"]
+[ext_resource type="Texture2D" uid="uid://vwdhae5802jh" path="res://assets/objects/crayons.png" id="9_6llfj"]
 [ext_resource type="PackedScene" uid="uid://bcw5v3cd0jtvc" path="res://scenes/items/TeddyBear.tscn" id="9_b1x3f"]
 [ext_resource type="Script" uid="uid://3cuy3dka57y5" path="res://scripts/systems/GameManager.gd" id="11_ouso4"]
 [ext_resource type="Texture2D" uid="uid://ti7xwyd8hyvi" path="res://assets/objects/plushblue1.png" id="11_raeie"]
@@ -365,6 +367,8 @@ size = Vector2(19.545471, 12.000008)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iuonh"]
 size = Vector2(189, 189)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg8fr"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2fmo"]
 size = Vector2(19.74707, 23)
 
@@ -428,6 +432,61 @@ shape = SubResource("RectangleShape2D_iuonh")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Carpet" unique_id=1663101793]
 texture = ExtResource("5_yyfjg")
+
+[node name="Crayon" type="Area2D" parent="." unique_id=845536349 node_paths=PackedStringArray("game_manager")]
+position = Vector2(562, 125)
+script = ExtResource("8_37hlw")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crayon" unique_id=909071312]
+texture = ExtResource("9_6llfj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crayon" unique_id=448891413]
+shape = SubResource("RectangleShape2D_gg8fr")
+
+[node name="Crayon2" type="Area2D" parent="." unique_id=1097970490 node_paths=PackedStringArray("game_manager")]
+position = Vector2(353, 94)
+script = ExtResource("8_37hlw")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crayon2" unique_id=1444437029]
+texture = ExtResource("9_6llfj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crayon2" unique_id=270202372]
+shape = SubResource("RectangleShape2D_gg8fr")
+
+[node name="Crayon3" type="Area2D" parent="." unique_id=982335145 node_paths=PackedStringArray("game_manager")]
+position = Vector2(48, 153)
+script = ExtResource("8_37hlw")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crayon3" unique_id=1132877457]
+texture = ExtResource("9_6llfj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crayon3" unique_id=1275884822]
+shape = SubResource("RectangleShape2D_gg8fr")
+
+[node name="Crayon4" type="Area2D" parent="." unique_id=434966259 node_paths=PackedStringArray("game_manager")]
+position = Vector2(17, 328)
+script = ExtResource("8_37hlw")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crayon4" unique_id=1394924890]
+texture = ExtResource("9_6llfj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crayon4" unique_id=1271111098]
+shape = SubResource("RectangleShape2D_gg8fr")
+
+[node name="Crayon5" type="Area2D" parent="." unique_id=529570614 node_paths=PackedStringArray("game_manager")]
+position = Vector2(624, 175)
+script = ExtResource("8_37hlw")
+game_manager = NodePath("../Systems/GameManager")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crayon5" unique_id=1873837758]
+texture = ExtResource("9_6llfj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crayon5" unique_id=676467996]
+shape = SubResource("RectangleShape2D_gg8fr")
 
 [node name="Candle" type="Area2D" parent="." unique_id=1298955212]
 z_index = 25
