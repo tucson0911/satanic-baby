@@ -10,6 +10,7 @@ enum Phase {
 	RITUAL
 }
 
+@onready var mm : MusicManager = $MusicManager
 
 signal phase_changed(new_phase: Phase)
 signal suspicion_changed(new_level: int)
@@ -40,7 +41,27 @@ const TOTAL_CANDLES := 5
 var candles_placed: int = 0
 var candles_lit: int = 0
 
+func _unhandled_input(event: InputEvent) -> void:
+	# Only run debug hotkeys in debug builds (or in editor)
+	if not OS.is_debug_build():
+		return
 
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_1:
+				print("[DEBUG] Switched to CRAYONS")
+				change_phase(Phase.CRAYONS)
+			KEY_2:
+				print("[DEBUG] Switched to PENTAGRAM")
+				change_phase(Phase.PENTAGRAM)
+			KEY_3:
+				print("[DEBUG] Switched to CANDLES")
+				change_phase(Phase.CANDLES)
+			KEY_4:
+				print("[DEBUG] Switched to LIGHTING")
+				change_phase(Phase.LIGHTING)
+			KEY_5:
+				print("[DEBUG] Switched to RITUAL")
 
 func add_crayon() -> void:
 	if current_phase != Phase.CRAYONS:
@@ -186,9 +207,10 @@ func add_suspicion(amount: int) -> void:
 
 	print("Suspicion: ", suspicion, "/5")
 
-
 func change_phase(new_phase: Phase) -> void:
 	current_phase = new_phase
 	phase_changed.emit(current_phase)
+	
+	mm.play_phase_music(current_phase)
 
 	print("Phase changed to: ", Phase.keys()[current_phase])
