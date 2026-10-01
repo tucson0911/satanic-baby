@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bsu2slaqujuie" path="res://scripts/player/PlayerController.gd" id="1_ow5a4"]
 [ext_resource type="Texture2D" uid="uid://bstpxe3rms5tl" path="res://assets/characters/baby.png" id="2_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://djp0ybys1i1fm" path="res://scenes/main/Door.tscn" id="2_p8abn"]
+[ext_resource type="PackedScene" uid="uid://swk5ypvm6132" path="res://scenes/main/Closet.tscn" id="3_62atk"]
 [ext_resource type="Script" uid="uid://durogn4r31puj" path="res://scripts/ritual/objects/Carpet.gd" id="3_hujxm"]
 [ext_resource type="Texture2D" uid="uid://15bjc3x41iwh" path="res://assets/environment/carpet_placeholder.jpg" id="4_yyfjg"]
 [ext_resource type="Script" uid="uid://biraqgj6blitd" path="res://scripts/ritual/objects/PickableObject.gd" id="5_b1x3f"]
@@ -381,6 +382,13 @@ size = Vector2(19.74707, 23)
 [node name="Door" parent="." unique_id=322781919 instance=ExtResource("2_p8abn")]
 position = Vector2(522, 69)
 
+[node name="Closet" parent="." unique_id=590218439 instance=ExtResource("3_62atk")]
+position = Vector2(200, 58)
+
+[node name="CollisionShape2D" parent="Closet" index="2" unique_id=741557964]
+position = Vector2(0, 7)
+scale = Vector2(4, 6)
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=312805971]
 z_index = 100
 position = Vector2(328.54547, 166.27275)
@@ -589,4 +597,5 @@ game_manager = NodePath("../GameManager")
 carpet = NodePath("../../Carpet")
 door = NodePath("../../Door")
 
+[editable path="Closet"]
 [editable path="Pentagram"]
