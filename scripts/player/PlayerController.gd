@@ -50,6 +50,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		# If holding an object, X drops it first
 		if held_object:
+			if try_place_held_object():
+				return
+
 			drop_object()
 			return
 
@@ -125,8 +128,49 @@ func try_pick_up() -> bool:
 	return false
 
 
+func try_place_held_object() -> bool:
+	if not held_object:
+		print("No held object")
+		return false
+
+	var areas = interact_detector.get_overlapping_areas()
+
+	print("Placement check - overlapping areas: ", areas.size())
+
+	for area in areas:
+		print("Detected area: ", area.name)
+
+		if area.has_method("can_accept_item") and area.has_method("receive_item"):
+			print(area.name, " can receive items")
+
+			if area.can_accept_item(held_object):
+				print(area.name, " accepts held object")
+
+				var item = held_object
+				held_object = null
+
+				area.receive_item(item)
+				return true
+			else:
+				print(area.name, " rejected held object")
+
+	return false
+
+
 func drop_object() -> void:
 	if held_object:
 		var current_scene = get_tree().current_scene
 		held_object.drop(current_scene, global_position)
 		held_object = null
+
+
+func can_receive_item() -> bool:
+	return held_object == null
+
+
+func receive_item(item: PickableObject) -> void:
+	if held_object:
+		return
+
+	held_object = item
+	held_object.pick_up(hold_position)	

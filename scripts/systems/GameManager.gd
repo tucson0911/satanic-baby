@@ -18,6 +18,8 @@ signal pentagram_progress_changed(current: int, total: int)
 signal first_pentagram_segment_drawn
 signal circle_completed
 signal crayon_collected(current: int, total: int)
+signal candle_placed(current: int, total: int)
+signal candle_lit(current: int, total: int)
 
 @export var total_pentagram_segments: int = 5
 @export var total_crayons: int = 5
@@ -35,6 +37,7 @@ var drawing_materials: int = 0
 var pentagram_segments: int = 0
 
 # Later phases
+const TOTAL_CANDLES := 5
 var candles_placed: int = 0
 var candles_lit: int = 0
 
@@ -148,6 +151,54 @@ func use_drawing_material() -> bool:
 
 	return true		
 
+
+func add_candle_placed() -> void:
+	candles_placed += 1
+
+	candle_placed.emit(
+		candles_placed,
+		TOTAL_CANDLES
+	)
+
+	print(
+		"Candles placed: ",
+		candles_placed,
+		"/",
+		TOTAL_CANDLES
+	)
+
+	if candles_placed >= TOTAL_CANDLES:
+		print("All candles placed!")
+		
+func add_candle_lit() -> void:
+	candles_lit += 1
+
+	candle_lit.emit(
+		candles_lit,
+		TOTAL_CANDLES
+	)
+
+	print(
+		"Candles lit: ",
+		candles_lit,
+		"/",
+		TOTAL_CANDLES
+	)
+
+	if candles_lit >= TOTAL_CANDLES:
+		print("ALL CANDLES LIT!")
+		
+		
+func remove_candle_placed() -> void:
+	candles_placed = max(candles_placed - 1, 0)
+
+	print(
+		"Candles placed: ",
+		candles_placed,
+		"/",
+		TOTAL_CANDLES
+	)		
+		
 
 func add_suspicion(amount: int) -> void:
 	suspicion = clamp(suspicion + amount, 0, 5)

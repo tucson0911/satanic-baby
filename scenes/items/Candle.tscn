@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cicsf1juf4qhg"]
+
+[ext_resource type="Script" uid="uid://p033l2j8bwgi" path="res://scripts/ritual/objects/Candle.gd" id="1_vrt0i"]
+[ext_resource type="Texture2D" uid="uid://cgayh2gll1ahf" path="res://assets/objects/candle1.png" id="2_kwe2k"]
+[ext_resource type="Texture2D" uid="uid://dyitqoyk2jsl0" path="res://assets/objects/candle2.png" id="3_kwe2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7in8"]
+
+[node name="Candle" type="Area2D" unique_id=1822444221 groups=["candle"]]
+script = ExtResource("1_vrt0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=442244878]
+shape = SubResource("RectangleShape2D_i7in8")
+
+[node name="CandleOff" type="Sprite2D" parent="." unique_id=8049995]
+texture_filter = 1
+texture = ExtResource("2_kwe2k")
+
+[node name="CandleOn" type="Sprite2D" parent="." unique_id=1059124158]
+visible = false
+texture_filter = 1
+texture = ExtResource("3_kwe2k")

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://hpx8bnxs8rg"]
+
+[ext_resource type="Script" uid="uid://bxiueq7hurekt" path="res://scripts/ritual/objects/CandleSlot.gd" id="1_j6bn7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg8fr"]
+
+[node name="CandleSlot" type="Area2D" unique_id=1076069025]
+script = ExtResource("1_j6bn7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601537129]
+shape = SubResource("RectangleShape2D_gg8fr")
+
+[node name="CandlePosition" type="Marker2D" parent="." unique_id=1914046422]

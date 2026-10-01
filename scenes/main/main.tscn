@@ -4,15 +4,16 @@
 [ext_resource type="Script" uid="uid://bsu2slaqujuie" path="res://scripts/player/PlayerController.gd" id="1_ow5a4"]
 [ext_resource type="Texture2D" uid="uid://bstpxe3rms5tl" path="res://assets/characters/baby.png" id="2_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://djp0ybys1i1fm" path="res://scenes/main/Door.tscn" id="2_p8abn"]
+[ext_resource type="PackedScene" uid="uid://swk5ypvm6132" path="res://scenes/main/Closet.tscn" id="3_62atk"]
 [ext_resource type="Script" uid="uid://durogn4r31puj" path="res://scripts/ritual/objects/Carpet.gd" id="3_hujxm"]
 [ext_resource type="Texture2D" uid="uid://15bjc3x41iwh" path="res://assets/environment/carpet_placeholder.jpg" id="4_yyfjg"]
-[ext_resource type="Script" uid="uid://biraqgj6blitd" path="res://scripts/ritual/objects/PickableObject.gd" id="5_b1x3f"]
 [ext_resource type="Texture2D" uid="uid://b2l3buoa8scw6" path="res://assets/objects/carpet1.png" id="5_yyfjg"]
 [ext_resource type="Texture2D" uid="uid://cgayh2gll1ahf" path="res://assets/objects/candle1.png" id="6_hujxm"]
 [ext_resource type="Texture2D" uid="uid://dyitqoyk2jsl0" path="res://assets/objects/candle2.png" id="7_yyfjg"]
 [ext_resource type="Script" uid="uid://bkb8wp2dtf26n" path="res://scripts/ritual/objects/Crayon.gd" id="8_37hlw"]
 [ext_resource type="Texture2D" uid="uid://vwdhae5802jh" path="res://assets/objects/crayons.png" id="9_6llfj"]
 [ext_resource type="PackedScene" uid="uid://bcw5v3cd0jtvc" path="res://scenes/items/TeddyBear.tscn" id="9_b1x3f"]
+[ext_resource type="Script" uid="uid://p033l2j8bwgi" path="res://scripts/ritual/objects/Candle.gd" id="11_62atk"]
 [ext_resource type="Script" uid="uid://3cuy3dka57y5" path="res://scripts/systems/GameManager.gd" id="11_ouso4"]
 [ext_resource type="Texture2D" uid="uid://ti7xwyd8hyvi" path="res://assets/objects/plushblue1.png" id="11_raeie"]
 [ext_resource type="PackedScene" uid="uid://71mckq1lde74" path="res://scenes/ritual/Pentagram.tscn" id="11_th5th"]
@@ -24,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://hety2nlcvo6l" path="res://assets/objects/plushpink2.png" id="16_s17dp"]
 [ext_resource type="Texture2D" uid="uid://bp30vqnlmbvfk" path="res://assets/objects/plushyellow1.png" id="17_37hlw"]
 [ext_resource type="Texture2D" uid="uid://bmcd08anyy3g8" path="res://assets/objects/plushyellow2.png" id="18_6llfj"]
+[ext_resource type="PackedScene" uid="uid://dahprbf00bfjd" path="res://scenes/items/WaxDoll.tscn" id="22_62atk"]
 [ext_resource type="Script" uid="uid://c8n81630hoeuv" path="res://scripts/systems/ParentSystem.gd" id="22_m4h2d"]
 [ext_resource type="Script" uid="uid://cg7cvru8kc31t" path="res://scripts/audio/MusicManager.gd" id="25_ii537"]
 [ext_resource type="AudioStream" uid="uid://ce0vxsrgbk85o" path="res://audios/music/theme_1.mp3" id="26_7nlll"]
@@ -33,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://dqrodbiixavw" path="res://audios/music/drone_rumble.mp3" id="30_r1bmu"]
 [ext_resource type="AudioStream" uid="uid://nmdacuoh2uit" path="res://audios/music/drone_anxiety.mp3" id="31_6w6mm"]
 [ext_resource type="Script" uid="uid://0kf6d5vwam0v" path="res://scripts/audio/Envelope.gd" id="32_rofvo"]
+[ext_resource type="PackedScene" uid="uid://hpx8bnxs8rg" path="res://scenes/ritual/CandleSlot.tscn" id="24_0bhws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk8p"]
 size = Vector2(43, 51.999992)
@@ -387,6 +390,13 @@ size = Vector2(19.74707, 23)
 [node name="Door" parent="." unique_id=322781919 instance=ExtResource("2_p8abn")]
 position = Vector2(522, 69)
 
+[node name="Closet" parent="." unique_id=590218439 instance=ExtResource("3_62atk")]
+position = Vector2(200, 58)
+
+[node name="CollisionShape2D" parent="Closet" index="2" unique_id=741557964]
+position = Vector2(0, 7)
+scale = Vector2(4, 6)
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=312805971]
 z_index = 100
 position = Vector2(328.54547, 166.27275)
@@ -500,10 +510,10 @@ texture = ExtResource("9_6llfj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crayon5" unique_id=676467996]
 shape = SubResource("RectangleShape2D_gg8fr")
 
-[node name="Candle" type="Area2D" parent="." unique_id=1298955212]
+[node name="Candle" type="Area2D" parent="." unique_id=1298955212 groups=["candle"]]
 z_index = 25
-position = Vector2(130, 237)
-script = ExtResource("5_b1x3f")
+position = Vector2(-27, 158)
+script = ExtResource("11_62atk")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Candle" unique_id=1425361038]
@@ -548,10 +558,45 @@ normal_texture = ExtResource("17_37hlw")
 broken_texture = ExtResource("18_6llfj")
 game_manager = NodePath("../Systems/GameManager")
 
+[node name="WaxDoll" parent="." unique_id=358602000 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(121, 122)
+
+[node name="WaxDoll2" parent="." unique_id=1207425749 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(99, 174)
+
+[node name="WaxDoll3" parent="." unique_id=400173971 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(61, 218)
+
+[node name="WaxDoll4" parent="." unique_id=1525722816 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(64, 285)
+
+[node name="WaxDoll5" parent="." unique_id=1522475384 groups=["candle"] instance=ExtResource("22_62atk")]
+position = Vector2(91, 339)
+
 [node name="Pentagram" parent="." unique_id=1349419566 node_paths=PackedStringArray("game_manager") instance=ExtResource("11_th5th")]
 position = Vector2(466, 269)
 script = ExtResource("12_7smn1")
 game_manager = NodePath("../Systems/GameManager")
+
+[node name="CandleSlot" parent="Pentagram" unique_id=1076069025 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
+position = Vector2(-1, -47)
+game_manager = NodePath("../../Systems/GameManager")
+
+[node name="CandleSlot2" parent="Pentagram" unique_id=534442115 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
+position = Vector2(29, 34)
+game_manager = NodePath("../../Systems/GameManager")
+
+[node name="CandleSlot3" parent="Pentagram" unique_id=1565931942 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
+position = Vector2(-41, -21)
+game_manager = NodePath("../../Systems/GameManager")
+
+[node name="CandleSlot4" parent="Pentagram" unique_id=2086506864 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
+position = Vector2(43, -21)
+game_manager = NodePath("../../Systems/GameManager")
+
+[node name="CandleSlot5" parent="Pentagram" unique_id=784782870 node_paths=PackedStringArray("game_manager") instance=ExtResource("24_0bhws")]
+position = Vector2(-31, 34)
+game_manager = NodePath("../../Systems/GameManager")
 
 [node name="Systems" type="Node" parent="." unique_id=499423747]
 
@@ -601,4 +646,6 @@ game_manager = NodePath("../GameManager")
 carpet = NodePath("../../Carpet")
 door = NodePath("../../Door")
 
+[editable path="Closet"]
+[editable path="WaxDoll"]
 [editable path="Pentagram"]
