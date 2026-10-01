@@ -11,6 +11,7 @@ enum Phase {
 }
 
 @onready var mm : MusicManager = $MusicManager
+@onready var sm : ShaderManager = $ShaderManager
 
 signal phase_changed(new_phase: Phase)
 signal suspicion_changed(new_level: int)
@@ -212,5 +213,18 @@ func change_phase(new_phase: Phase) -> void:
 	phase_changed.emit(current_phase)
 	
 	mm.play_phase_music(current_phase)
+	sm.switch_phase_shader(current_phase)
+	
+	# Waving
+	if new_phase == Phase.CRAYONS:
+		sm.stop_waving_effect()
+	if new_phase == Phase.LIGHTING:
+		sm.start_waving_effect()
+		sm.start_glitching(0.4)
+		sm.start_vignette(.95)
+	else:
+		sm.stop_glitching(0.5)
+		sm.stop_vignette()
+		
 
 	print("Phase changed to: ", Phase.keys()[current_phase])
