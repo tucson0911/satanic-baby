@@ -5,6 +5,7 @@ const SPEED = 100.0
 @onready var hold_position: Node2D = $HoldPosition
 @onready var player: AnimationPlayer = $AnimationPlayer
 @onready var interact_detector: Area2D = $InteractDetector
+@onready var sfx_manager: Node = $SoundManager
 
 var held_object: PickableObject = null
 var active_interactable: Interactable = null

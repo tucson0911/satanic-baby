@@ -25,6 +25,14 @@
 [ext_resource type="Texture2D" uid="uid://bp30vqnlmbvfk" path="res://assets/objects/plushyellow1.png" id="17_37hlw"]
 [ext_resource type="Texture2D" uid="uid://bmcd08anyy3g8" path="res://assets/objects/plushyellow2.png" id="18_6llfj"]
 [ext_resource type="Script" uid="uid://c8n81630hoeuv" path="res://scripts/systems/ParentSystem.gd" id="22_m4h2d"]
+[ext_resource type="Script" uid="uid://cg7cvru8kc31t" path="res://scripts/audio/MusicManager.gd" id="25_ii537"]
+[ext_resource type="AudioStream" uid="uid://ce0vxsrgbk85o" path="res://audios/music/theme_1.mp3" id="26_7nlll"]
+[ext_resource type="AudioStream" uid="uid://dt26s6guxx85k" path="res://audios/music/theme_2.mp3" id="27_ii537"]
+[ext_resource type="AudioStream" uid="uid://ci6mwospw56v1" path="res://audios/music/theme_3.mp3" id="28_rofvo"]
+[ext_resource type="AudioStream" uid="uid://65x330b75yi5" path="res://audios/music/theme_4.mp3" id="29_tbnf8"]
+[ext_resource type="AudioStream" uid="uid://dqrodbiixavw" path="res://audios/music/drone_rumble.mp3" id="30_r1bmu"]
+[ext_resource type="AudioStream" uid="uid://nmdacuoh2uit" path="res://audios/music/drone_anxiety.mp3" id="31_6w6mm"]
+[ext_resource type="Script" uid="uid://0kf6d5vwam0v" path="res://scripts/audio/Envelope.gd" id="32_rofvo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk8p"]
 size = Vector2(43, 51.999992)
@@ -408,6 +416,10 @@ libraries/ = SubResource("AnimationLibrary_pg34l")
 position = Vector2(0.2272644, 9.727249)
 shape = SubResource("RectangleShape2D_rl7k7")
 
+[node name="SoundManager" type="Node" parent="Player" unique_id=1642362289]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player/SoundManager" unique_id=884539312]
+
 [node name="Carpet" type="Area2D" parent="." unique_id=1328000553 node_paths=PackedStringArray("pentagram_center")]
 z_index = 50
 position = Vector2(264, 203)
@@ -545,6 +557,43 @@ game_manager = NodePath("../Systems/GameManager")
 
 [node name="GameManager" type="Node" parent="Systems" unique_id=140387077]
 script = ExtResource("11_ouso4")
+
+[node name="MusicManager" type="Node" parent="Systems/GameManager" unique_id=60995101 node_paths=PackedStringArray("phase_containers")]
+script = ExtResource("25_ii537")
+phase_containers = {
+0: NodePath("Phase_Crayons"),
+1: NodePath("Phase_Pentagram"),
+2: NodePath("Phase_Candles"),
+3: NodePath("Phase_Lighting")
+}
+
+[node name="Phase_Crayons" type="Node" parent="Systems/GameManager/MusicManager" unique_id=1987063100]
+
+[node name="theme_1" type="AudioStreamPlayer2D" parent="Systems/GameManager/MusicManager/Phase_Crayons" unique_id=2104968462]
+stream = ExtResource("26_7nlll")
+
+[node name="Phase_Pentagram" type="Node" parent="Systems/GameManager/MusicManager" unique_id=2061921791]
+
+[node name="theme_2" type="AudioStreamPlayer2D" parent="Systems/GameManager/MusicManager/Phase_Pentagram" unique_id=1138330511]
+stream = ExtResource("27_ii537")
+
+[node name="Phase_Candles" type="Node" parent="Systems/GameManager/MusicManager" unique_id=1758413966]
+
+[node name="theme_3" type="AudioStreamPlayer2D" parent="Systems/GameManager/MusicManager/Phase_Candles" unique_id=1206504320]
+stream = ExtResource("28_rofvo")
+
+[node name="Phase_Lighting" type="Node" parent="Systems/GameManager/MusicManager" unique_id=696908673]
+
+[node name="theme_4" type="AudioStreamPlayer2D" parent="Systems/GameManager/MusicManager/Phase_Lighting" unique_id=236569652]
+stream = ExtResource("29_tbnf8")
+
+[node name="drone_rumble" type="AudioStreamPlayer2D" parent="Systems/GameManager/MusicManager/Phase_Lighting" unique_id=1285872322]
+stream = ExtResource("30_r1bmu")
+
+[node name="drone_anxiety" type="AudioStreamPlayer2D" parent="Systems/GameManager/MusicManager/Phase_Lighting" unique_id=1295151261]
+stream = ExtResource("31_6w6mm")
+script = ExtResource("32_rofvo")
+attack_time = 40.0
 
 [node name="ParentSystem" type="Node" parent="Systems" unique_id=651861332 node_paths=PackedStringArray("game_manager", "carpet", "door")]
 script = ExtResource("22_m4h2d")
