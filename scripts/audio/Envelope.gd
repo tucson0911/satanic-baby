@@ -7,20 +7,16 @@ var _was_playing : bool = false
 var _tween : Tween
 
 func _process(_delta: float) -> void:
-	# Tjek om lyden lige er startet med at spille
 	if playing and not _was_playing:
 		_start_attack()
 	
 	_was_playing = playing
 
 func _start_attack() -> void:
-	# Hvis der allerede kører en indtoning, så stop den
 	if _tween and _tween.is_valid():
 		_tween.kill()
 		
-	# Start helt lydløs
 	volume_db = -80.0
 	
-	# Ton op over attack_time
 	_tween = create_tween()
 	_tween.tween_property(self, "volume_db", target_volume, attack_time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
