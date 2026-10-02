@@ -38,6 +38,8 @@
 [ext_resource type="Script" uid="uid://0kf6d5vwam0v" path="res://scripts/audio/Envelope.gd" id="32_rofvo"]
 [ext_resource type="Script" uid="uid://c4ebmge16341d" path="res://scripts/systems/ShaderManager.gd" id="36_1k3ck"]
 [ext_resource type="Shader" uid="uid://lxhybm0bwtcp" path="res://shaders/shader.gdshader" id="37_os81g"]
+[ext_resource type="PackedScene" uid="uid://de5w74hnsheen" path="res://scenes/ui/SusMeter.tscn" id="39_62f45"]
+[ext_resource type="PackedScene" uid="uid://cicsf1juf4qhg" path="res://scenes/items/Candle.tscn" id="40_6g32y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk8p"]
 size = Vector2(43, 51.999992)
@@ -407,6 +409,9 @@ position = Vector2(522, 69)
 [node name="Closet" parent="." unique_id=590218439 instance=ExtResource("3_62atk")]
 position = Vector2(200, 58)
 
+[node name="ClosetOpen" parent="Closet" index="1" unique_id=1704878833]
+visible = false
+
 [node name="CollisionShape2D" parent="Closet" index="2" unique_id=741557964]
 position = Vector2(0, 7)
 scale = Vector2(4, 6)
@@ -470,7 +475,7 @@ shape = SubResource("RectangleShape2D_iuonh")
 texture = ExtResource("5_yyfjg")
 
 [node name="Crayon" type="Area2D" parent="." unique_id=845536349 node_paths=PackedStringArray("game_manager")]
-position = Vector2(562, 125)
+position = Vector2(426.55225, 105.74916)
 script = ExtResource("8_37hlw")
 game_manager = NodePath("../Systems/GameManager")
 
@@ -481,7 +486,7 @@ texture = ExtResource("9_6llfj")
 shape = SubResource("RectangleShape2D_gg8fr")
 
 [node name="Crayon2" type="Area2D" parent="." unique_id=1097970490 node_paths=PackedStringArray("game_manager")]
-position = Vector2(353, 94)
+position = Vector2(274.47086, 98.75156)
 script = ExtResource("8_37hlw")
 game_manager = NodePath("../Systems/GameManager")
 
@@ -525,6 +530,7 @@ texture = ExtResource("9_6llfj")
 shape = SubResource("RectangleShape2D_gg8fr")
 
 [node name="Candle" type="Area2D" parent="." unique_id=1298955212 groups=["candle"]]
+visible = false
 z_index = 25
 position = Vector2(-27, 158)
 script = ExtResource("11_62atk")
@@ -664,7 +670,7 @@ shader_presets = Dictionary[int, float]({
 })
 wave_attack = 80.0
 glitch_attack = 200.0
-vignette_attack = 200.0
+vignette_attack = 100.0
 
 [node name="Shader" type="ColorRect" parent="Systems/GameManager/ShaderManager" unique_id=777786397]
 z_index = 200
@@ -678,9 +684,17 @@ game_manager = NodePath("../GameManager")
 carpet = NodePath("../../Carpet")
 door = NodePath("../../Door")
 
+[node name="SusMeter" parent="Systems/ParentSystem" unique_id=2127775025 node_paths=PackedStringArray("game_manager") instance=ExtResource("39_62f45")]
+position = Vector2(597, 309)
+game_manager = NodePath("../../GameManager")
+
 [node name="ParentSoundManager" type="Node" parent="Systems/ParentSystem" unique_id=147130590]
 
 [node name="footsteps_10s" type="AudioStreamPlayer2D" parent="Systems/ParentSystem/ParentSoundManager" unique_id=700399845]
+
+[node name="Candle2" parent="." unique_id=1822444221 instance=ExtResource("40_6g32y")]
+visible = false
+position = Vector2(131, 229)
 
 [editable path="Closet"]
 [editable path="WaxDoll"]

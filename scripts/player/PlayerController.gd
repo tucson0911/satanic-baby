@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
+const SPEED = 300.0
 
 @onready var hold_position: Node2D = $HoldPosition
 @onready var player: AnimationPlayer = $AnimationPlayer

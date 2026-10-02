@@ -107,7 +107,7 @@ func complete_circle() -> void:
 func complete_first_parent_visit() -> void:
 	first_parent_visit_completed = true
 
-	if is_circle_completed:
+	if is_circle_completed and current_phase == Phase.CRAYONS:
 		change_phase(Phase.PENTAGRAM)	
 
 func add_pentagram_segment() -> void:
@@ -170,6 +170,7 @@ func add_candle_placed() -> void:
 
 	if candles_placed >= TOTAL_CANDLES:
 		print("All candles placed!")
+		change_phase(Phase.LIGHTING)
 		
 func add_candle_lit() -> void:
 	candles_lit += 1
@@ -188,6 +189,7 @@ func add_candle_lit() -> void:
 
 	if candles_lit >= TOTAL_CANDLES:
 		print("ALL CANDLES LIT!")
+		change_phase(Phase.RITUAL)
 		
 		
 func remove_candle_placed() -> void:

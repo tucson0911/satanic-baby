@@ -6,6 +6,7 @@ extends PickableObject
 
 @onready var candle_off: Sprite2D = $CandleOff
 @onready var candle_on: Sprite2D = $CandleOn
+@onready var point_light: PointLight2D = $PointLight2D
 
 var is_placed: bool = false
 var is_lit: bool = false
@@ -61,6 +62,7 @@ func light_candle() -> void:
 
 	candle_off.visible = false
 	candle_on.visible = true
+	point_light.visible = true
 
 	print("Candle lit!")
 
