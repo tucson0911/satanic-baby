@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dk8m1ld5orcd6" path="res://scenes/main/room.tscn" id="1_a8run"]
 [ext_resource type="Script" uid="uid://bsu2slaqujuie" path="res://scripts/player/PlayerController.gd" id="1_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://h63upv0cuhh6" path="res://scenes/ritual/Ghosts.tscn" id="1_wcrab"]
+[ext_resource type="Script" uid="uid://eiud61vitwrx" path="res://scripts/ritual/objects/ghosts.gd" id="2_gohbf"]
 [ext_resource type="Texture2D" uid="uid://bstpxe3rms5tl" path="res://assets/characters/baby.png" id="2_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://djp0ybys1i1fm" path="res://scenes/main/Door.tscn" id="2_p8abn"]
 [ext_resource type="PackedScene" uid="uid://swk5ypvm6132" path="res://scenes/main/Closet.tscn" id="3_62atk"]
@@ -637,6 +639,10 @@ game_manager = NodePath("../../Systems/GameManager")
 
 [node name="GameManager" type="Node" parent="Systems" unique_id=140387077]
 script = ExtResource("11_ouso4")
+
+[node name="Ghosts" parent="Systems/GameManager" unique_id=1607474514 instance=ExtResource("1_wcrab")]
+position = Vector2(1, 0)
+script = ExtResource("2_gohbf")
 
 [node name="MusicManager" type="Node" parent="Systems/GameManager" unique_id=60995101 node_paths=PackedStringArray("phase_containers")]
 script = ExtResource("25_ii537")

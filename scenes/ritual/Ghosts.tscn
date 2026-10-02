@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://h63upv0cuhh6"]
+
+[ext_resource type="Texture2D" uid="uid://cj7jl2xn26wvt" path="res://assets/characters/ghost.png" id="1_f7rcc"]
+[ext_resource type="Texture2D" uid="uid://ctfhdb3j0xjjq" path="res://assets/characters/shadow.png" id="2_iatjd"]
+
+[node name="Ghosts" type="Area2D" unique_id=1904833759]
+modulate = Color(0.3647059, 0.3647059, 0.3647059, 0)
+
+[node name="ghost_1" type="Sprite2D" parent="." unique_id=1137250563]
+z_index = 1000
+position = Vector2(87, 87)
+scale = Vector2(-0.13, 0.13)
+texture = ExtResource("1_f7rcc")
+
+[node name="ghost_4" type="Sprite2D" parent="." unique_id=1374728283]
+z_index = 1000
+position = Vector2(256.25616, 263.13577)
+scale = Vector2(-0.25646418, 0.25646418)
+texture = ExtResource("1_f7rcc")
+
+[node name="ghost_3" type="Sprite2D" parent="." unique_id=54850959]
+z_index = 1000
+position = Vector2(161.85287, 194.51315)
+scale = Vector2(-0.10255747, 0.100651726)
+texture = ExtResource("1_f7rcc")
+
+[node name="ghost_2" type="Sprite2D" parent="." unique_id=1819482018]
+z_index = 1000
+position = Vector2(556, 135)
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("1_f7rcc")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1823520030]
+z_index = 1000
+position = Vector2(472, 230)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_iatjd")

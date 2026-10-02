@@ -12,6 +12,7 @@ enum Phase {
 
 @onready var mm : MusicManager = $MusicManager
 @onready var sm : ShaderManager = $ShaderManager
+@onready var ghosts: Ghosts = $Ghosts 
 
 signal phase_changed(new_phase: Phase)
 signal suspicion_changed(new_level: int)
@@ -63,6 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				change_phase(Phase.LIGHTING)
 			KEY_5:
 				print("[DEBUG] Switched to RITUAL")
+				change_phase(Phase.RITUAL)
 
 func add_crayon() -> void:
 	if current_phase != Phase.CRAYONS:
@@ -232,6 +234,12 @@ func change_phase(new_phase: Phase) -> void:
 	else:
 		sm.stop_glitching(0.5)
 		sm.stop_vignette()
+		
+	# Make ghosts
+	if new_phase == Phase.RITUAL:
+		print("Fading in ghosts")
+		if ghosts and ghosts.has_method("fade_in"):
+			ghosts.fade_in()
 		
 
 	print("Phase changed to: ", Phase.keys()[current_phase])
