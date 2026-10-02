@@ -209,6 +209,12 @@ func add_suspicion(amount: int) -> void:
 	suspicion_changed.emit(suspicion)
 
 	print("Suspicion: ", suspicion, "/5")
+	
+	if suspicion >= 5:
+		restart_game()
+
+func restart_game() -> void:
+	get_tree().reload_current_scene()
 
 func change_phase(new_phase: Phase) -> void:
 	current_phase = new_phase

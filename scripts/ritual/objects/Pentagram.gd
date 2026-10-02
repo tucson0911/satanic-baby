@@ -35,6 +35,8 @@ func interact_pressed(_player: CharacterBody2D) -> void:
 	if not can_draw():
 		return
 
+	_player.sm.play_sound("scribble")
+
 	is_drawing = true
 	draw_progress = 0.0
 
@@ -50,7 +52,7 @@ func interact_held(_player: CharacterBody2D, delta: float) -> void:
 		return
 
 	if not can_draw():
-		cancel_drawing()
+		cancel_drawing(_player)
 		return
 
 	draw_progress += delta
@@ -58,12 +60,12 @@ func interact_held(_player: CharacterBody2D, delta: float) -> void:
 	print("Drawing: ", snapped(draw_progress, 0.1), "/", draw_time)
 
 	if draw_progress >= draw_time:
-		complete_current_drawing()
+		complete_current_drawing(_player)
 
 
 func interact_released(_player: CharacterBody2D) -> void:
 	if is_drawing:
-		cancel_drawing()
+		cancel_drawing(_player)
 
 
 func can_draw() -> bool:
@@ -92,27 +94,29 @@ func can_draw() -> bool:
 	return false
 
 
-func complete_current_drawing() -> void:
+func complete_current_drawing(_player : CharacterBody2D) -> void:
 	if game_manager.current_phase == GameManager.Phase.CRAYONS:
-		complete_circle()
+		complete_circle(_player)
 
 	elif game_manager.current_phase == GameManager.Phase.PENTAGRAM:
-		complete_segment()
+		complete_segment(_player)
+		
+	_player.sm.stop_sound("scribble")
 
 	draw_progress = 0.0
 	is_drawing = false
 
 
-func complete_circle() -> void:
+func complete_circle(_player : CharacterBody2D) -> void:
 	sprite.visible = true
 	sprite.frame = 0
 
 	game_manager.complete_circle()
 
 
-func complete_segment() -> void:
+func complete_segment(_player : CharacterBody2D) -> void:
 	if not game_manager.use_drawing_material():
-		cancel_drawing()
+		cancel_drawing(_player)
 		return
 
 	game_manager.add_pentagram_segment()
@@ -125,7 +129,8 @@ func complete_segment() -> void:
 	is_drawing = false
 
 
-func cancel_drawing() -> void:
+func cancel_drawing(_player: CharacterBody2D) -> void:
+	_player.sm.stop_sound("scribble")
 	draw_progress = 0.0
 	is_drawing = false
 

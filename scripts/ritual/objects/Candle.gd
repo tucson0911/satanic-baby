@@ -7,6 +7,7 @@ extends PickableObject
 @onready var candle_off: Sprite2D = $CandleOff
 @onready var candle_on: Sprite2D = $CandleOn
 @onready var point_light: PointLight2D = $PointLight2D
+@onready var sm: SoundManager = $CandleSoundManager
 
 var is_placed: bool = false
 var is_lit: bool = false
@@ -31,6 +32,8 @@ func start_lighting() -> void:
 func update_lighting(delta: float) -> void:
 	if not is_placed or is_lit:
 		return
+		
+	sm.play_sound("light")
 
 	light_progress += delta
 

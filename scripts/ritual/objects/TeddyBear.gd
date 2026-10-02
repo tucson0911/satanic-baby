@@ -7,6 +7,7 @@ extends Interactable
 @export var game_manager: GameManager
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var sm: SoundManager = $TeddySoundManager
 
 var current_presses: int = 0
 var is_broken: bool = false
@@ -18,6 +19,8 @@ func _ready() -> void:
 func interact_pressed(_player: CharacterBody2D) -> void:
 	if is_broken:
 		return
+		
+	sm.play_sound("crunch")
 
 	current_presses += 1
 
@@ -28,6 +31,7 @@ func interact_pressed(_player: CharacterBody2D) -> void:
 
 
 func break_teddy() -> void:
+	sm.play_sound("crack")
 	is_broken = true
 	if broken_texture:
 		sprite.texture = broken_texture

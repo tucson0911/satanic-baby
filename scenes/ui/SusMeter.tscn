@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://de5w74hnsheen"]
 
-[ext_resource type="Script" uid="uid://b40hjwkkdjm3s" path="res://scripts/systems/SusMeter.gd" id="1_j7aq2"]
+[ext_resource type="Script" uid="uid://b40hjwkkdjm3s" path="res://scripts/systems/Parent/SusMeter.gd" id="1_j7aq2"]
 [ext_resource type="Texture2D" uid="uid://cgpnyaopojy87" path="res://assets/ui/SusMeter1.png" id="2_wsqnu"]
 [ext_resource type="Texture2D" uid="uid://djb43dljgugkp" path="res://assets/ui/SusMeter2.png" id="3_c43e1"]
 [ext_resource type="Texture2D" uid="uid://dab234481wk1r" path="res://assets/ui/SusMeter3.png" id="4_2efnu"]

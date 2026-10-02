@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cgayh2gll1ahf" path="res://assets/objects/candle1.png" id="2_kwe2k"]
 [ext_resource type="Texture2D" uid="uid://dyitqoyk2jsl0" path="res://assets/objects/candle2.png" id="3_kwe2k"]
 [ext_resource type="Texture2D" uid="uid://b2l3buoa8scw6" path="res://assets/objects/carpet1.png" id="4_6y4k3"]
+[ext_resource type="Script" uid="uid://cxekmy5ut2pkf" path="res://scripts/systems/SoundManager.gd" id="5_fg0k6"]
+[ext_resource type="AudioStream" uid="uid://dgrfhvxfto7me" path="res://audios/sfx/player_light.mp3" id="6_vssu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7in8"]
 
@@ -44,3 +46,9 @@ visible = false
 z_index = -2
 position = Vector2(-2, 5)
 texture = ExtResource("4_6y4k3")
+
+[node name="CandleSoundManager" type="Node" parent="." unique_id=1436507430]
+script = ExtResource("5_fg0k6")
+
+[node name="light" type="AudioStreamPlayer2D" parent="CandleSoundManager" unique_id=1061100379]
+stream = ExtResource("6_vssu5")

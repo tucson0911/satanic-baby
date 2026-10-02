@@ -12,17 +12,19 @@ extends Node
 
 # Delay options (in seconds) representing the 4 speeds
 @export var speed_slow: float = 10.0      # Speed 1 (Longest approach / current default)
-@export var speed_medium: float = 7.5     # Speed 2
-@export var speed_fast: float = 5.0       # Speed 3
-@export var speed_very_fast: float = 2.5  # Speed 4
+@export var speed_medium: float = 8     # Speed 2
+@export var speed_fast: float = 6.5       # Speed 3
+@export var speed_very_fast: float = 5.0  # Speed 4
 
 # Range of wait time (in seconds) BETWEEN completed visits and triggering the next approach
 @export var min_interval_between_visits: float = 5.0
 @export var max_interval_between_visits: float = 15.0
 
+
 var first_visit_started := false
 var is_loop_active := false
 
+@onready var sm : SoundManager = $ParentSoundManager
 
 func _ready() -> void:
 	if game_manager:
@@ -52,9 +54,12 @@ func schedule_visit_with_delay(delay: float) -> void:
 
 func parent_visit() -> void:
 	print("PARENT ENTERS ROOM")
+	sm.play_sound("open_door")
 
 	if door:
+		sm.stop_sound("footsteps_10s")
 		door.open_door()
+		
 
 	inspect_room()
 
@@ -62,6 +67,7 @@ func parent_visit() -> void:
 
 	if door:
 		door.close_door()
+		sm.play_sound("close_door")
 
 	print("PARENT LEAVES ROOM")
 	
@@ -83,18 +89,25 @@ func inspect_room() -> void:
 
 func trigger_visit_speed_1() -> void:
 	print("PARENT VISITS IN %s SECONDS", speed_slow)
+	sm.play_sound("footsteps_10s")
+
 	await schedule_visit_with_delay(speed_slow)
 
 func trigger_visit_speed_2() -> void:
 	print("PARENT VISITS IN %s SECONDS", speed_medium)
+	sm.play_sound("footsteps_10s")
+
 	await schedule_visit_with_delay(speed_medium)
 
 func trigger_visit_speed_3() -> void:
 	print("PARENT VISITS IN %s SECONDS", speed_fast)
+	sm.play_sound("footsteps_10s")
+
 	await schedule_visit_with_delay(speed_fast)
 
 func trigger_visit_speed_4() -> void:
 	print("PARENT VISITS IN %s SECONDS", speed_very_fast)
+	sm.play_sound("footsteps_10s")
 	await schedule_visit_with_delay(speed_very_fast)
 
 
@@ -112,6 +125,7 @@ func start_random_parent_loop() -> void:
 
 		if not is_inside_tree() or not is_loop_active:
 			break
+			
 
 		# Pick one of the 4 speed functions at random
 		var choice := randi_range(1, 4)
