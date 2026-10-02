@@ -1,15 +1,14 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
+const SPEED = 300.0
 
 @onready var hold_position: Node2D = $HoldPosition
 @onready var player: AnimationPlayer = $AnimationPlayer
 @onready var interact_detector: Area2D = $InteractDetector
-@onready var sfx_manager: Node = $SoundManager
+@onready var sm: SoundManager = $PlayerSoundManager
 
 var held_object: PickableObject = null
 var active_interactable: Interactable = null
-
 
 func _ready() -> void:
 	add_to_group("player")
@@ -31,6 +30,8 @@ func process_movement() -> void:
 	)
 
 	if direction != Vector2.ZERO:
+		sm.play_sound("walk")
+		
 		velocity = direction * SPEED
 
 		if direction.x > 0:
@@ -43,6 +44,7 @@ func process_movement() -> void:
 			player.play("crawl_up")
 
 	else:
+		sm.stop_sound("walk")
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
 
 
@@ -123,6 +125,7 @@ func try_pick_up() -> bool:
 		if area is PickableObject and not area.is_held:
 			held_object = area
 			held_object.pick_up(hold_position)
+			sm.play_sound("pickup")
 			return true
 
 	return false

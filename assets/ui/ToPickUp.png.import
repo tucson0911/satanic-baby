@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pdkko11r3a3q"
-valid=false
+path="res://.godot/imported/ToPickUp.png-bac303bc51120d0207626291c575ef31.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/ui/ToPickUp.png"
+dest_files=["res://.godot/imported/ToPickUp.png-bac303bc51120d0207626291c575ef31.ctex"]
 
 [params]
 

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://by1phdyu7aeu7"]
+
+[ext_resource type="Texture2D" uid="uid://pdkko11r3a3q" path="res://assets/ui/ToPickUp.png" id="1_qoxts"]
+[ext_resource type="Texture2D" uid="uid://ddrk2njfrfclt" path="res://assets/ui/CrayonText.png" id="2_4tjl4"]
+[ext_resource type="Texture2D" uid="uid://cymvkky2mcob2" path="res://assets/ui/LighterText.png" id="3_25q7s"]
+[ext_resource type="Texture2D" uid="uid://qc776y2hrbi5" path="res://assets/ui/WaxDollText.png" id="4_742rb"]
+
+[node name="Area2D" type="Area2D" unique_id=1355474249]
+position = Vector2(325, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1309208100]
+texture = ExtResource("1_qoxts")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=627384675]
+texture = ExtResource("2_4tjl4")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=590326177]
+texture = ExtResource("3_25q7s")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1198563284]
+texture = ExtResource("4_742rb")

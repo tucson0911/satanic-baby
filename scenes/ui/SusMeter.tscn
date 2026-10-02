@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://de5w74hnsheen"]
+
+[ext_resource type="Script" uid="uid://b40hjwkkdjm3s" path="res://scripts/systems/Parent/SusMeter.gd" id="1_j7aq2"]
+[ext_resource type="Texture2D" uid="uid://cgpnyaopojy87" path="res://assets/ui/SusMeter1.png" id="2_wsqnu"]
+[ext_resource type="Texture2D" uid="uid://djb43dljgugkp" path="res://assets/ui/SusMeter2.png" id="3_c43e1"]
+[ext_resource type="Texture2D" uid="uid://dab234481wk1r" path="res://assets/ui/SusMeter3.png" id="4_2efnu"]
+[ext_resource type="Texture2D" uid="uid://bhvcpywcq264h" path="res://assets/ui/SusMeter4.png" id="5_46avq"]
+[ext_resource type="Texture2D" uid="uid://7aqhq0ab6n4w" path="res://assets/ui/SusMeter5.png" id="6_800k0"]
+
+[node name="Area2D" type="Area2D" unique_id=1562827994]
+script = ExtResource("1_j7aq2")
+meter_1 = ExtResource("2_wsqnu")
+meter_2 = ExtResource("3_c43e1")
+meter_3 = ExtResource("4_2efnu")
+meter_4 = ExtResource("5_46avq")
+meter_5 = ExtResource("6_800k0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1786783181]
+position = Vector2(16.885, 0)
+scale = Vector2(0.385, 0.385)

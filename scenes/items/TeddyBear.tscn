@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://d2auc18ve1mer" path="res://scripts/ritual/objects/TeddyBear.gd" id="1_ju7jm"]
 [ext_resource type="Texture2D" uid="uid://0kdbpsfxjuy4" path="res://assets/objects/plush1.png" id="2_v5rvq"]
 [ext_resource type="Texture2D" uid="uid://d0mm13ylwuyvj" path="res://assets/objects/plush2.png" id="3_l3owg"]
+[ext_resource type="Script" uid="uid://cxekmy5ut2pkf" path="res://scripts/systems/SoundManager.gd" id="4_v5rvq"]
+[ext_resource type="AudioStream" uid="uid://58og0qx0qf7t" path="res://audios/sfx/crack_neck.wav" id="5_l3owg"]
+[ext_resource type="AudioStream" uid="uid://don1rrqn2fcfn" path="res://audios/sfx/crunch.wav" id="6_sq1nx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg8fr"]
 
@@ -17,3 +20,12 @@ shape = SubResource("RectangleShape2D_gg8fr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1493307310]
 texture = ExtResource("2_v5rvq")
+
+[node name="TeddySoundManager" type="Node" parent="." unique_id=1404692273]
+script = ExtResource("4_v5rvq")
+
+[node name="crack" type="AudioStreamPlayer2D" parent="TeddySoundManager" unique_id=392104867]
+stream = ExtResource("5_l3owg")
+
+[node name="crunch" type="AudioStreamPlayer2D" parent="TeddySoundManager" unique_id=875767395]
+stream = ExtResource("6_sq1nx")

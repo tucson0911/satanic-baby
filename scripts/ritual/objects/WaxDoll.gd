@@ -3,6 +3,8 @@ extends Interactable
 @export var burn_time: float = 2.0
 @export var candle_scene: PackedScene
 
+@onready var sm : SoundManager = $DollSoundManager
+
 var burn_progress: float = 0.0
 var is_burning: bool = false
 
@@ -14,7 +16,9 @@ func interact_pressed(_player: CharacterBody2D) -> void:
 func interact_held(_player: CharacterBody2D, delta: float) -> void:
 	if not is_burning:
 		return
-
+	
+	sm.play_sound("burn")
+	
 	burn_progress += delta
 
 	print("Burning: ", snapped(burn_progress, 0.1), "/", burn_time)
@@ -26,6 +30,8 @@ func interact_held(_player: CharacterBody2D, delta: float) -> void:
 func interact_released(_player: CharacterBody2D) -> void:
 	if not is_burning:
 		return
+		
+	sm.stop_sound("burn")
 
 	is_burning = false
 	burn_progress = 0.0

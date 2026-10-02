@@ -115,7 +115,7 @@ func set_vignette_opacity(target_opacity: float, duration: float = 1.0) -> void:
 	vignette_tween.tween_property(mat, "shader_parameter/vignette_opacity", target_opacity, duration)
 
 
-func start_vignette(opacity: float = 0.7) -> void:
+func start_vignette(opacity: float = 0.9) -> void:
 	set_vignette_opacity(opacity, vignette_attack)
 
 

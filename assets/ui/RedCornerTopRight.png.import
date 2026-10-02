@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpuosjti5dt0w"
-valid=false
+path="res://.godot/imported/RedCornerTopRight.png-aca1de8a286b8fc3049d265c161e1e99.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/ui/RedCornerTopRight.png"
+dest_files=["res://.godot/imported/RedCornerTopRight.png-aca1de8a286b8fc3049d265c161e1e99.ctex"]
 
 [params]
 

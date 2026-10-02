@@ -5,7 +5,7 @@ extends Interactable
 var collected: bool = false
 
 
-func interact_pressed(_player: CharacterBody2D) -> void:
+func interact_pressed(player: CharacterBody2D) -> void:
 	if collected:
 		return
 
@@ -16,6 +16,9 @@ func interact_pressed(_player: CharacterBody2D) -> void:
 		return
 
 	collected = true
+	
+	if player and player.sm:
+		player.sm.play_sound("pickup")
 
 	game_manager.add_crayon()
 

@@ -2,17 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://dk8m1ld5orcd6" path="res://scenes/main/room.tscn" id="1_a8run"]
 [ext_resource type="Script" uid="uid://bsu2slaqujuie" path="res://scripts/player/PlayerController.gd" id="1_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://h63upv0cuhh6" path="res://scenes/ritual/Ghosts.tscn" id="1_wcrab"]
+[ext_resource type="Script" uid="uid://eiud61vitwrx" path="res://scripts/ritual/objects/ghosts.gd" id="2_gohbf"]
 [ext_resource type="Texture2D" uid="uid://bstpxe3rms5tl" path="res://assets/characters/baby.png" id="2_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://djp0ybys1i1fm" path="res://scenes/main/Door.tscn" id="2_p8abn"]
 [ext_resource type="PackedScene" uid="uid://swk5ypvm6132" path="res://scenes/main/Closet.tscn" id="3_62atk"]
 [ext_resource type="Script" uid="uid://durogn4r31puj" path="res://scripts/ritual/objects/Carpet.gd" id="3_hujxm"]
 [ext_resource type="Texture2D" uid="uid://15bjc3x41iwh" path="res://assets/environment/carpet_placeholder.jpg" id="4_yyfjg"]
 [ext_resource type="Texture2D" uid="uid://b2l3buoa8scw6" path="res://assets/objects/carpet1.png" id="5_yyfjg"]
+[ext_resource type="AudioStream" uid="uid://43nlyjq61mhs" path="res://audios/sfx/player_walk.mp3" id="6_7dg2i"]
 [ext_resource type="Texture2D" uid="uid://cgayh2gll1ahf" path="res://assets/objects/candle1.png" id="6_hujxm"]
 [ext_resource type="Texture2D" uid="uid://dyitqoyk2jsl0" path="res://assets/objects/candle2.png" id="7_yyfjg"]
+[ext_resource type="AudioStream" uid="uid://cb4klt28l41hr" path="res://audios/sfx/player_pickup.mp3" id="8_08tbl"]
 [ext_resource type="Script" uid="uid://bkb8wp2dtf26n" path="res://scripts/ritual/objects/Crayon.gd" id="8_37hlw"]
 [ext_resource type="Texture2D" uid="uid://vwdhae5802jh" path="res://assets/objects/crayons.png" id="9_6llfj"]
 [ext_resource type="PackedScene" uid="uid://bcw5v3cd0jtvc" path="res://scenes/items/TeddyBear.tscn" id="9_b1x3f"]
+[ext_resource type="AudioStream" uid="uid://likkd2ch0jlp" path="res://audios/sfx/player_scribble.mp3" id="9_f4j1x"]
 [ext_resource type="Script" uid="uid://p033l2j8bwgi" path="res://scripts/ritual/objects/Candle.gd" id="11_62atk"]
 [ext_resource type="Script" uid="uid://3cuy3dka57y5" path="res://scripts/systems/GameManager.gd" id="11_ouso4"]
 [ext_resource type="Texture2D" uid="uid://ti7xwyd8hyvi" path="res://assets/objects/plushblue1.png" id="11_raeie"]
@@ -26,7 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bp30vqnlmbvfk" path="res://assets/objects/plushyellow1.png" id="17_37hlw"]
 [ext_resource type="Texture2D" uid="uid://bmcd08anyy3g8" path="res://assets/objects/plushyellow2.png" id="18_6llfj"]
 [ext_resource type="PackedScene" uid="uid://dahprbf00bfjd" path="res://scenes/items/WaxDoll.tscn" id="22_62atk"]
-[ext_resource type="Script" uid="uid://c8n81630hoeuv" path="res://scripts/systems/ParentSystem.gd" id="22_m4h2d"]
+[ext_resource type="Script" uid="uid://c8n81630hoeuv" path="res://scripts/systems/Parent/ParentSystem.gd" id="22_m4h2d"]
 [ext_resource type="PackedScene" uid="uid://hpx8bnxs8rg" path="res://scenes/ritual/CandleSlot.tscn" id="24_0bhws"]
 [ext_resource type="Script" uid="uid://cg7cvru8kc31t" path="res://scripts/audio/MusicManager.gd" id="25_ii537"]
 [ext_resource type="AudioStream" uid="uid://ce0vxsrgbk85o" path="res://audios/music/theme_1.mp3" id="26_7nlll"]
@@ -38,6 +43,12 @@
 [ext_resource type="Script" uid="uid://0kf6d5vwam0v" path="res://scripts/audio/Envelope.gd" id="32_rofvo"]
 [ext_resource type="Script" uid="uid://c4ebmge16341d" path="res://scripts/systems/ShaderManager.gd" id="36_1k3ck"]
 [ext_resource type="Shader" uid="uid://lxhybm0bwtcp" path="res://shaders/shader.gdshader" id="37_os81g"]
+[ext_resource type="PackedScene" uid="uid://de5w74hnsheen" path="res://scenes/ui/SusMeter.tscn" id="39_62f45"]
+[ext_resource type="AudioStream" uid="uid://cmv10my6iina5" path="res://audios/sfx/parent_walk_slow.mp3" id="40_5nwjq"]
+[ext_resource type="PackedScene" uid="uid://cicsf1juf4qhg" path="res://scenes/items/Candle.tscn" id="40_6g32y"]
+[ext_resource type="Script" uid="uid://cxekmy5ut2pkf" path="res://scripts/systems/SoundManager.gd" id="40_g2upo"]
+[ext_resource type="AudioStream" uid="uid://dcg0latdxh2fb" path="res://audios/sfx/door_open.mp3" id="42_i6fjx"]
+[ext_resource type="AudioStream" uid="uid://c2aqnoqgksc8d" path="res://audios/sfx/door_closed.mp3" id="43_7dg2i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk8p"]
 size = Vector2(43, 51.999992)
@@ -407,6 +418,9 @@ position = Vector2(522, 69)
 [node name="Closet" parent="." unique_id=590218439 instance=ExtResource("3_62atk")]
 position = Vector2(200, 58)
 
+[node name="ClosetOpen" parent="Closet" index="1" unique_id=1704878833]
+visible = false
+
 [node name="CollisionShape2D" parent="Closet" index="2" unique_id=741557964]
 position = Vector2(0, 7)
 scale = Vector2(4, 6)
@@ -440,9 +454,17 @@ libraries/ = SubResource("AnimationLibrary_pg34l")
 position = Vector2(0.2272644, 9.727249)
 shape = SubResource("RectangleShape2D_rl7k7")
 
-[node name="SoundManager" type="Node" parent="Player" unique_id=1642362289]
+[node name="PlayerSoundManager" type="Node" parent="Player" unique_id=8828992]
+script = ExtResource("40_g2upo")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player/SoundManager" unique_id=884539312]
+[node name="walk" type="AudioStreamPlayer2D" parent="Player/PlayerSoundManager" unique_id=1653566266]
+stream = ExtResource("6_7dg2i")
+
+[node name="pickup" type="AudioStreamPlayer2D" parent="Player/PlayerSoundManager" unique_id=871659981]
+stream = ExtResource("8_08tbl")
+
+[node name="scribble" type="AudioStreamPlayer2D" parent="Player/PlayerSoundManager" unique_id=933116204]
+stream = ExtResource("9_f4j1x")
 
 [node name="Carpet" type="Area2D" parent="." unique_id=1328000553 node_paths=PackedStringArray("pentagram_center")]
 z_index = 50
@@ -470,7 +492,7 @@ shape = SubResource("RectangleShape2D_iuonh")
 texture = ExtResource("5_yyfjg")
 
 [node name="Crayon" type="Area2D" parent="." unique_id=845536349 node_paths=PackedStringArray("game_manager")]
-position = Vector2(562, 125)
+position = Vector2(426.55225, 105.74916)
 script = ExtResource("8_37hlw")
 game_manager = NodePath("../Systems/GameManager")
 
@@ -481,7 +503,7 @@ texture = ExtResource("9_6llfj")
 shape = SubResource("RectangleShape2D_gg8fr")
 
 [node name="Crayon2" type="Area2D" parent="." unique_id=1097970490 node_paths=PackedStringArray("game_manager")]
-position = Vector2(353, 94)
+position = Vector2(274.47086, 98.75156)
 script = ExtResource("8_37hlw")
 game_manager = NodePath("../Systems/GameManager")
 
@@ -525,6 +547,7 @@ texture = ExtResource("9_6llfj")
 shape = SubResource("RectangleShape2D_gg8fr")
 
 [node name="Candle" type="Area2D" parent="." unique_id=1298955212 groups=["candle"]]
+visible = false
 z_index = 25
 position = Vector2(-27, 158)
 script = ExtResource("11_62atk")
@@ -617,6 +640,10 @@ game_manager = NodePath("../../Systems/GameManager")
 [node name="GameManager" type="Node" parent="Systems" unique_id=140387077]
 script = ExtResource("11_ouso4")
 
+[node name="Ghosts" parent="Systems/GameManager" unique_id=1607474514 instance=ExtResource("1_wcrab")]
+position = Vector2(1, 0)
+script = ExtResource("2_gohbf")
+
 [node name="MusicManager" type="Node" parent="Systems/GameManager" unique_id=60995101 node_paths=PackedStringArray("phase_containers")]
 script = ExtResource("25_ii537")
 phase_containers = {
@@ -664,7 +691,7 @@ shader_presets = Dictionary[int, float]({
 })
 wave_attack = 80.0
 glitch_attack = 200.0
-vignette_attack = 200.0
+vignette_attack = 60.0
 
 [node name="Shader" type="ColorRect" parent="Systems/GameManager/ShaderManager" unique_id=777786397]
 z_index = 200
@@ -678,9 +705,25 @@ game_manager = NodePath("../GameManager")
 carpet = NodePath("../../Carpet")
 door = NodePath("../../Door")
 
+[node name="SusMeter" parent="Systems/ParentSystem" unique_id=2127775025 node_paths=PackedStringArray("game_manager") instance=ExtResource("39_62f45")]
+position = Vector2(597, 309)
+game_manager = NodePath("../../GameManager")
+
 [node name="ParentSoundManager" type="Node" parent="Systems/ParentSystem" unique_id=147130590]
+script = ExtResource("40_g2upo")
 
 [node name="footsteps_10s" type="AudioStreamPlayer2D" parent="Systems/ParentSystem/ParentSoundManager" unique_id=700399845]
+stream = ExtResource("40_5nwjq")
+
+[node name="open_door" type="AudioStreamPlayer2D" parent="Systems/ParentSystem/ParentSoundManager" unique_id=2028407898]
+stream = ExtResource("42_i6fjx")
+
+[node name="close_door" type="AudioStreamPlayer2D" parent="Systems/ParentSystem/ParentSoundManager" unique_id=2118911953]
+stream = ExtResource("43_7dg2i")
+
+[node name="Candle2" parent="." unique_id=1822444221 instance=ExtResource("40_6g32y")]
+visible = false
+position = Vector2(131, 229)
 
 [editable path="Closet"]
 [editable path="WaxDoll"]

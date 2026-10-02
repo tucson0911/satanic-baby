@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddrk2njfrfclt"
-valid=false
+path="res://.godot/imported/CrayonText.png-ed6145ad90689ca890b1767c6b0c721b.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/ui/CrayonText.png"
+dest_files=["res://.godot/imported/CrayonText.png-ed6145ad90689ca890b1767c6b0c721b.ctex"]
 
 [params]
 

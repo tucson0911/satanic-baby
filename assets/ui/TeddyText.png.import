@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmch0t7mxr13f"
-valid=false
+path="res://.godot/imported/TeddyText.png-80cc0f74e65b4d764f678a2d551c01a7.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/ui/TeddyText.png"
+dest_files=["res://.godot/imported/TeddyText.png-80cc0f74e65b4d764f678a2d551c01a7.ctex"]
 
 [params]
 

@@ -12,6 +12,7 @@ enum Phase {
 
 @onready var mm : MusicManager = $MusicManager
 @onready var sm : ShaderManager = $ShaderManager
+@onready var ghosts: Ghosts = $Ghosts 
 
 signal phase_changed(new_phase: Phase)
 signal suspicion_changed(new_level: int)
@@ -63,6 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				change_phase(Phase.LIGHTING)
 			KEY_5:
 				print("[DEBUG] Switched to RITUAL")
+				change_phase(Phase.RITUAL)
 
 func add_crayon() -> void:
 	if current_phase != Phase.CRAYONS:
@@ -107,7 +109,7 @@ func complete_circle() -> void:
 func complete_first_parent_visit() -> void:
 	first_parent_visit_completed = true
 
-	if is_circle_completed:
+	if is_circle_completed and current_phase == Phase.CRAYONS:
 		change_phase(Phase.PENTAGRAM)	
 
 func add_pentagram_segment() -> void:
@@ -170,6 +172,7 @@ func add_candle_placed() -> void:
 
 	if candles_placed >= TOTAL_CANDLES:
 		print("All candles placed!")
+		change_phase(Phase.LIGHTING)
 		
 func add_candle_lit() -> void:
 	candles_lit += 1
@@ -188,6 +191,7 @@ func add_candle_lit() -> void:
 
 	if candles_lit >= TOTAL_CANDLES:
 		print("ALL CANDLES LIT!")
+		change_phase(Phase.RITUAL)
 		
 		
 func remove_candle_placed() -> void:
@@ -207,6 +211,12 @@ func add_suspicion(amount: int) -> void:
 	suspicion_changed.emit(suspicion)
 
 	print("Suspicion: ", suspicion, "/5")
+	
+	if suspicion >= 5:
+		restart_game()
+
+func restart_game() -> void:
+	get_tree().reload_current_scene()
 
 func change_phase(new_phase: Phase) -> void:
 	current_phase = new_phase
@@ -224,6 +234,12 @@ func change_phase(new_phase: Phase) -> void:
 	else:
 		sm.stop_glitching(0.5)
 		sm.stop_vignette()
+		
+	# Make ghosts
+	if new_phase == Phase.RITUAL:
+		print("Fading in ghosts")
+		if ghosts and ghosts.has_method("fade_in"):
+			ghosts.fade_in()
 		
 
 	print("Phase changed to: ", Phase.keys()[current_phase])
